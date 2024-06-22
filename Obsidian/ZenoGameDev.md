@@ -35,8 +35,8 @@ A person starts the game => destroys opponents => receives a reward => buys new 
 ### Controls
 
 - Movement: wasd / joystick on phone
-- Attack: LMB / button on phone
-- Special attacks: buttons on PC / button on phone
+- Fire: LMB / button on phone
+- Knife: RMB / button on phone
 
 ### Objectives
 
@@ -44,11 +44,11 @@ Go as far as possible
 
 ### Progression
 
-The player walks through simple rooms where he destroys opponents. At the end of the room, the player is given the opportunity to improve some of the characteristics. A chest with some equipment may also fall out
+Игрок ходит по небольшому городу, где появляются враги. Врагов нужно уничтожать оружием, в начале игроку даётся нож. В конце волн игроку даётся награда, за которую он может покупать новое оружие, улучшать старое или покупать боеприпасы. С каждой волной враги сильнее, и их больше (will translated soon)
 
 ### Enemies
 
- Creatures that are trying to touch you
+Creatures that are trying to touch you
 
 ---
 
@@ -56,22 +56,23 @@ The player walks through simple rooms where he destroys opponents. At the end of
 
 ### Plot Summary
 
-Due to a mistake by scientists, an incurable virus has arisen, which is instantly transmitted through contact. We play as a man whose goal is to get to a safe town
+Due to a mistake by scientists, an incurable virus has arisen, which is instantly transmitted through contact. Мы играем за военного, которому нужно зачистить город (will translated soon)
 
 ### Characters
 
 - Main character
+- Продавец оружия
 
 ### Enemies
-- ...
+- kinda like zombie 
 
 ### World
 
-Ruins with a bunch of infected
+City ruins with a bunch of infected
 
 ### Lore
 
-Due to a mistake by scientists, an incurable virus has arisen, which is instantly transmitted through contact. We play as a man whose goal is to get to a safe town
+...
 
 ---
 
@@ -98,7 +99,7 @@ Due to a mistake by scientists, an incurable virus has arisen, which is instantl
 
 ### Music
 
-*Describe the style of music, including any specific composers or soundtracks that will be used.*
+Hard Rock (DOOM)
 
 ### Sound Effects
 
