@@ -1,1 +1,1 @@
-[[ZenoGameDev.md]]
+[Page Game Design Document](ZenogameDev.md)
