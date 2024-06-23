@@ -44,7 +44,7 @@ Go as far as possible
 
 ### Progression
 
-Игрок ходит по небольшому городу, где появляются враги. Врагов нужно уничтожать оружием, в начале игроку даётся нож. В конце волн игроку даётся награда, за которую он может покупать новое оружие, улучшать старое или покупать боеприпасы. С каждой волной враги сильнее, и их больше (will translated soon)
+The player walks around a small town where enemies appear. Enemies need to be destroyed with weapons, at the beginning the player is given a knife. At the end of the waves, the player is given a reward for which he can buy new weapons, upgrade old ones, or buy ammunition. With each wave, the enemies are stronger and there are more of them
 
 ### Enemies
 
@@ -56,12 +56,12 @@ Creatures that are trying to touch you
 
 ### Plot Summary
 
-Due to a mistake by scientists, an incurable virus has arisen, which is instantly transmitted through contact. Мы играем за военного, которому нужно зачистить город (will translated soon)
+Due to a mistake by scientists, an incurable virus has arisen, which is instantly transmitted through contact. We play as a military man who needs to clean up the city
 
 ### Characters
 
 - Main character
-- Продавец оружия
+- A gun seller
 
 ### Enemies
 - kinda like zombie 
