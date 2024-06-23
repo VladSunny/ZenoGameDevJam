@@ -102,6 +102,17 @@
                 },
                 {
                     "name": "",
+                    "id": "048adf0b-8ffc-4a04-8416-da4cfb80ea22",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dashing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "47a9db51-d247-401d-a6f5-4b361ba00423",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",

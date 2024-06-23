@@ -11,9 +11,8 @@ namespace Scripts.Combat
         [Header("Settings")]
         [SerializeField] private float _cooldown = 2f;
         [SerializeField] private float _damage = 10f;
-        // [SerializeField] private LayerMask _hitLayer;
+        [SerializeField] private float _force = 5f;
 
-        // private HitBoxesGenerator _hitBoxesGenerator;
         private PlayerInput _playerInput;
         private InputAction _slashAction;
         private Animator _animator;
@@ -22,7 +21,6 @@ namespace Scripts.Combat
         private bool _canSlash = true;
 
         private void Awake() {
-            // _hitBoxesGenerator = GetComponentInParent<HitBoxesGenerator>();
             _playerInput = GetComponentInParent<PlayerInput>();
             _animator = GetComponent<Animator>();
 
@@ -56,6 +54,11 @@ namespace Scripts.Combat
 
         void OnTriggerEnter(Collider other) {
             if (other.GetComponent<Health>() != null && !_damagedEnemies.Contains(other)) {
+                Rigidbody rigidbody = other.GetComponent<Rigidbody>();
+
+                if (rigidbody != null)
+                    rigidbody.AddForce(transform.forward * _force, ForceMode.Impulse);
+
                 other.GetComponent<Health>().TakeDamage(_damage);
                 _damagedEnemies.Add(other);
             }
