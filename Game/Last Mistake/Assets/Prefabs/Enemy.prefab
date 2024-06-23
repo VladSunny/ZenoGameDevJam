@@ -173,6 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
+  OnDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3502196966452164679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +191,4 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _speed: 7
   _pathUpdateInterval: 0.2
+  _maxConcussionTime: 3

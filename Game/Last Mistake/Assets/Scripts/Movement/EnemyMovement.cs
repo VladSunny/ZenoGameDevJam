@@ -23,7 +23,7 @@ namespace Scripts.Movement
         private float _concussionTime = 0f;
         private bool _isDead = false;
 
-        private void Awake() {
+        public void Initialize(Transform playerTransform) {
             _agent = GetComponent<NavMeshAgent>();
             _rb = GetComponent<Rigidbody>();
             _health = GetComponent<Health>();
@@ -32,10 +32,13 @@ namespace Scripts.Movement
             _path = new NavMeshPath();
             _health.OnDead.AddListener(OnDead);
 
+            _playerTransform = playerTransform;
             CalculatePath();
         }
 
         void CalculatePath() {
+            if (_playerTransform == null || _agent == null || _path == null) return;
+
             if (_agent.CalculatePath(_playerTransform.position, _path)) {
                 _currentPathIndex = 0;
             }
@@ -45,6 +48,8 @@ namespace Scripts.Movement
         }
 
         private void Update() {
+            if (_playerTransform == null || _agent == null || _path == null) return;
+
             if (_isDead) return;
 
             if (Time.time > _pathUpdateTime) {

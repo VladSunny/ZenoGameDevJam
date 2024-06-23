@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using NiceIO.Sysroot;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Scripts.Movement;
@@ -26,10 +24,11 @@ namespace Scripts.Combat
             _playerInput = GetComponentInParent<PlayerInput>();
             _animator = GetComponent<Animator>();
 
-            _slashAction = _playerInput.actions["KnifeSlash"];
-
-            _slashAction.performed += Slash;
-            _slashAction.canceled += Slash;
+            if (_playerInput != null) {
+                _slashAction = _playerInput.actions["KnifeSlash"];
+                _slashAction.performed += Slash;
+                _slashAction.canceled += Slash;
+            }
         }
 
         private void OnEnable() {
