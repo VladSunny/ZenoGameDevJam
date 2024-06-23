@@ -2340,6 +2340,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7812633843554044736, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _damage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812633843554044736, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _concussion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

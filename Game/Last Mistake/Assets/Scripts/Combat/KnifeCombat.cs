@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NiceIO.Sysroot;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Scripts.Movement;
 
 namespace Scripts.Combat
 {
@@ -12,6 +13,7 @@ namespace Scripts.Combat
         [SerializeField] private float _cooldown = 2f;
         [SerializeField] private float _damage = 10f;
         [SerializeField] private float _force = 5f;
+        [SerializeField] private float _concussion = 2f;
 
         private PlayerInput _playerInput;
         private InputAction _slashAction;
@@ -31,11 +33,13 @@ namespace Scripts.Combat
         }
 
         private void OnEnable() {
-            _slashAction.Enable();
+            if (_slashAction != null)
+                _slashAction.Enable();
         }
 
         private void OnDisable() {
-            _slashAction.Disable();
+            if (_slashAction != null)
+                _slashAction.Disable();
         }
 
         private void Slash(InputAction.CallbackContext context) {
@@ -58,6 +62,10 @@ namespace Scripts.Combat
 
                 if (rigidbody != null)
                     rigidbody.AddForce(transform.forward * _force, ForceMode.Impulse);
+
+                EnemyMovement enemyMovement = other.GetComponent<EnemyMovement>();
+
+                if (enemyMovement != null) enemyMovement.Concussion(_concussion);
 
                 other.GetComponent<Health>().TakeDamage(_damage);
                 _damagedEnemies.Add(other);

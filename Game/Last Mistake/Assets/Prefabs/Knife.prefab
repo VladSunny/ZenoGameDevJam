@@ -93,9 +93,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7877209937095502311}
+  - component: {fileID: 8285461991141926294}
   - component: {fileID: 899371001854586609}
   - component: {fileID: 3192437840574161250}
-  - component: {fileID: 8285461991141926294}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -119,6 +119,27 @@ Transform:
   - {fileID: 2696513242866740186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8285461991141926294
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525457773634098444}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 1.3, z: 0.3}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!95 &899371001854586609
 Animator:
   serializedVersion: 5
@@ -155,27 +176,7 @@ MonoBehaviour:
   _cooldown: 2
   _damage: 10
   _force: 5
---- !u!65 &8285461991141926294
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2525457773634098444}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.1, y: 1.3, z: 0.3}
-  m_Center: {x: 0, y: 0.1, z: 0}
+  _concussion: 1
 --- !u!1 &4512259970484322750
 GameObject:
   m_ObjectHideFlags: 0

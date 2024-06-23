@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
+using Scripts.Combat;
 
 namespace Scripts.Movement
 {
@@ -12,18 +13,26 @@ namespace Scripts.Movement
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private float _speed = 5f;
         [SerializeField] private float _pathUpdateInterval = 0.5f;
+        [SerializeField] private float _maxConcussionTime = 3f;
 
         private NavMeshAgent _agent;
         private NavMeshPath _path;
         private Rigidbody _rb;
+        private Health _health;
 
         private int _currentPathIndex = 0;
         private float _pathUpdateTime = 0f;
+        private float _concussionTime = 0f;
+        private bool _isDead = false;
 
         private void Awake() {
             _agent = GetComponent<NavMeshAgent>();
             _rb = GetComponent<Rigidbody>();
+            _health = GetComponent<Health>();
+
+            _rb.freezeRotation = true;
             _path = new NavMeshPath();
+            _health.OnDead.AddListener(OnDead);
 
             CalculatePath();
         }
@@ -38,9 +47,16 @@ namespace Scripts.Movement
         }
 
         private void Update() {
+            if (_isDead) return;
+
             if (Time.time > _pathUpdateTime) {
                 CalculatePath();
                 _pathUpdateTime = Time.time + _pathUpdateInterval;
+            }
+
+            if (_concussionTime > 0) {
+                _concussionTime -= Time.deltaTime;
+                return;
             }
 
             if (_path.status == NavMeshPathStatus.PathComplete && _currentPathIndex < _path.corners.Length) {
@@ -66,6 +82,24 @@ namespace Scripts.Movement
                 Vector3 limitedVelocity = flatVelocity.normalized * _speed;
                 _rb.velocity = new Vector3(limitedVelocity.x, _rb.velocity.y, limitedVelocity.z);
             }
+        }
+
+        public void Concussion(float time) {
+            _concussionTime += time;
+
+            if (_concussionTime > _maxConcussionTime) _concussionTime = _maxConcussionTime;
+        }
+
+        private void OnDead() {
+            _rb.freezeRotation = false;
+            _agent.enabled = false;
+
+            _isDead = true;
+
+            _rb.drag = 1f;
+            _rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
+
+            Destroy(gameObject, 5f);
         }
     }
 }
