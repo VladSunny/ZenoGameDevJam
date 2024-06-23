@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace Scripts
+namespace Scripts.Combat
 {
     public class HitBoxesGenerator : MonoBehaviour
     {
