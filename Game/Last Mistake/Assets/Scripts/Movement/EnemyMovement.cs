@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
 
 namespace Scripts.Movement
 {
@@ -93,7 +91,7 @@ namespace Scripts.Movement
             if (_concussionTime > _maxConcussionTime) _concussionTime = _maxConcussionTime;
         }
 
-        private async void OnDead() {
+        private void OnDead() {
             _rb.freezeRotation = false;
             _agent.enabled = false;
 
@@ -101,12 +99,6 @@ namespace Scripts.Movement
 
             _rb.drag = 1f;
             _rb.AddForce(Vector3.up * 5, ForceMode.Impulse);
-
-            await UniTask.Delay(2000);
-
-            await transform.DOScale(0, 0.5f).AsyncWaitForCompletion();
-
-            Destroy(gameObject, 5f);
         }
     }
 }
