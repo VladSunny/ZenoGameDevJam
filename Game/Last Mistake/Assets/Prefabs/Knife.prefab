@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7877209937095502311}
   - component: {fileID: 899371001854586609}
+  - component: {fileID: 3192437840574161250}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -160,6 +161,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3192437840574161250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2525457773634098444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebedc60a8128b6289d6bb48132eed46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldown: 2
 --- !u!1 &4512259970484322750
 GameObject:
   m_ObjectHideFlags: 0
