@@ -7,9 +7,14 @@ namespace Scripts
     public class CameraFollow : MonoBehaviour
     {
         [SerializeField] private Transform _playerTransform;
+        [SerializeField] private Vector3 _cameraOffset;
 
         private void Update() {
-            transform.position = new Vector3(_playerTransform.position.x, transform.position.y, _playerTransform.position.z);
+            transform.position = new Vector3(
+                _playerTransform.position.x + _cameraOffset.x,
+                transform.position.y + _cameraOffset.y,
+                _playerTransform.position.z + _cameraOffset.z
+            );
         }
     }
 }

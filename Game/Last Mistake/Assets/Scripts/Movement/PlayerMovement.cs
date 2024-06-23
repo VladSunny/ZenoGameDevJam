@@ -9,7 +9,6 @@ namespace Scripts.Movement
     {
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 5f;
-        [SerializeField] private float _moveDrag = 2f;
         
         [Header("Rotation")]
         [SerializeField] private float _rotationSpeed = 5f;
@@ -50,8 +49,6 @@ namespace Scripts.Movement
         }
 
         private void Update() {
-            // StateHandler();
-
             SpeedControl();
             RotateTowardsMouse();
         }
@@ -101,7 +98,6 @@ namespace Scripts.Movement
                 {
                     Quaternion targetRotation = Quaternion.LookRotation(direction);
                     transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-                    // transform.rotation = Quaternion.LookRotation(direction);
                 }
             }
         }

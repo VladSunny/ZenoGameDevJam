@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTransform: {fileID: 734979842}
+  _cameraOffset: {x: 0, y: 0, z: -3}
 --- !u!1001 &347396761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1362,12 +1363,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 639655820}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &734979840 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4302367119032769651, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 653505288883134407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &734979842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 823348931823972400, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
     type: 3}
   m_PrefabInstance: {fileID: 653505288883134407}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &734979848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734979840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 320256cc192f5f6e6aa05270dfac0e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterTransform: {fileID: 734979842}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  drawDebugBoxInEditor: 1
+  debugPunch: 1
+  punchKey: 323
+  debugDraw: 1
 --- !u!1001 &770863590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2007,7 +2034,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4302367119032769651, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 734979848}
   m_SourcePrefab: {fileID: 100100000, guid: 741064efaa6a9f64ba8f23b99feaf0d5, type: 3}
 --- !u!1001 &1671578149323913462
 PrefabInstance:
