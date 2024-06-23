@@ -10,16 +10,19 @@ namespace Scripts.Combat
     {
         [Header("Settings")]
         [SerializeField] private float _cooldown = 2f;
+        [SerializeField] private float _damage = 10f;
+        // [SerializeField] private LayerMask _hitLayer;
 
-        private HitBoxesGenerator _hitBoxesGenerator;
+        // private HitBoxesGenerator _hitBoxesGenerator;
         private PlayerInput _playerInput;
         private InputAction _slashAction;
         private Animator _animator;
 
+        private HashSet<Collider> _damagedEnemies = new HashSet<Collider>();
         private bool _canSlash = true;
 
         private void Awake() {
-            _hitBoxesGenerator = GetComponentInParent<HitBoxesGenerator>();
+            // _hitBoxesGenerator = GetComponentInParent<HitBoxesGenerator>();
             _playerInput = GetComponentInParent<PlayerInput>();
             _animator = GetComponent<Animator>();
 
@@ -47,12 +50,15 @@ namespace Scripts.Combat
         }
 
         private void ResetSlash() {
+            _damagedEnemies.Clear();
             _canSlash = true;
         }
 
-        public void Attack() {
-            Transform playerTransform = transform.parent;
-            _hitBoxesGenerator.CreateHitBox(playerTransform.forward * 1f, new Vector3(1f, 1f, 1f), null, true);
+        void OnTriggerEnter(Collider other) {
+            if (other.GetComponent<Health>() != null && !_damagedEnemies.Contains(other)) {
+                other.GetComponent<Health>().TakeDamage(_damage);
+                _damagedEnemies.Add(other);
+            }
         }
     }
 }
