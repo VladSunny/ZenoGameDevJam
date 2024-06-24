@@ -3,21 +3,30 @@ using UnityEngine.InputSystem;
 using Scripts.Combat;
 using Scripts.Movement;
 using TMPro;
+using System.Collections;
 
 namespace Scripts
 {
     public class PistolCombat : MonoBehaviour
     {
+        [Header("Dependencies")]
+        [SerializeField] private Transform _muzzle;
+
         [Header("Settings")]
         [SerializeField] private int _bulletsInClip = 7;
         [SerializeField] private int _maxBullets = 35;
         [SerializeField] private float _damage = 10f;
+        [SerializeField] private float _spread = 0.01f;
         [SerializeField] private float _force = 2f;
         [SerializeField] private float _concussion = 0.5f;
         [SerializeField] private float _shootCooldown = 0.5f;
 
         [Header("UI")]
         [SerializeField] private TextMeshProUGUI _bulletsText;
+
+        [Header("Effects")]
+        [SerializeField] private TrailRenderer _bulletTrail;
+        [SerializeField] private ParticleSystem _bulletParticle;
 
         private PlayerInput _playerInput;
         private InputAction _shootAction;
@@ -61,9 +70,16 @@ namespace Scripts
 
             _curBullets--;
 
+            Vector3 direction = GetDirection();
+
             RaycastHit hit;
-            if (Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, 100f))
+            if (Physics.Raycast(_muzzle.position, direction, out hit, 100f))
             {
+                if (_bulletTrail != null) {
+                    TrailRenderer trail = Instantiate(_bulletTrail, _muzzle.position, Quaternion.identity);
+                    StartCoroutine(SpawnTrail(trail, hit));
+                }
+
                 Health enemyHealth = hit.collider.GetComponent<Health>();
                 if (enemyHealth != null)
                 {
@@ -88,7 +104,37 @@ namespace Scripts
             Invoke("ResetShoot", _shootCooldown);
             _animator.SetTrigger("shoot");
 
-            Debug.DrawRay(transform.parent.position, transform.parent.forward * 100f, Color.red, 2f);
+            Debug.DrawRay(_muzzle.position, direction * 100f, Color.red, 2f);
+        }
+
+        private Vector3 GetDirection() {
+            Vector3 direction = transform.parent.forward;
+
+            direction += new Vector3(Random.Range(-_spread, _spread), 0f, Random.Range(-_spread, _spread));
+
+            direction.Normalize();
+
+            return direction;
+        }
+
+        private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit) {
+            float time = 0f;
+            Vector3 startPosition = trail.transform.position;
+
+            while (time < 1f) {
+                trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
+                time += Time.deltaTime / trail.time;
+
+                yield return null;
+            }
+
+            Debug.Log(hit.point);
+
+            trail.transform.position = hit.point;
+
+            Instantiate(_bulletParticle, hit.point + hit.normal * 0.5f, Quaternion.LookRotation(hit.normal));
+
+            Destroy(trail.gameObject, trail.time);
         }
 
         private void ResetShoot() => _canShoot = true;
