@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 
-namespace Scripts
+namespace Scripts.Combat
 {
     public class Health : MonoBehaviour
     {

@@ -26,7 +26,7 @@ namespace Scripts
             for (int i = 0; i < _spawnCount; i++) {
                 await UniTask.Delay((int)Random.Range(_minMaxDelay.x, _minMaxDelay.y) * 1000);
 
-                int spawnPointIndex = Random.Range(0, _spawnPoints.Length);
+                int spawnPointIndex = Random.Range(1, _spawnPoints.Length);
                 GameObject obj = Instantiate(_prefab, _spawnPoints[spawnPointIndex].position, Quaternion.identity);
                 obj.GetComponent<EnemyMovement>().Initialize(_playerTransform);
             }

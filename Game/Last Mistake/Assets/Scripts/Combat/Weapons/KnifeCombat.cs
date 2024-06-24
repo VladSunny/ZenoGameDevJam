@@ -19,6 +19,9 @@ namespace Scripts.Combat
 
         private HashSet<Collider> _damagedEnemies = new HashSet<Collider>();
         private bool _canSlash = true;
+        private bool _canDamage = false;
+        public void CanDamage() => _canDamage = true;
+        public void CanNotDamage() => _canDamage = false;
 
         private void Awake() {
             _playerInput = GetComponentInParent<PlayerInput>();
@@ -56,6 +59,8 @@ namespace Scripts.Combat
         }
 
         void OnTriggerEnter(Collider other) {
+            if (!_canDamage) return;
+
             if (other.GetComponent<Health>() != null && !_damagedEnemies.Contains(other)) {
                 Rigidbody rigidbody = other.GetComponent<Rigidbody>();
 
