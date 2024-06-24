@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -17,13 +15,21 @@ namespace Scripts
         [SerializeField] private int _currentWaveEnemyCount = 10;
         [SerializeField] private float _restTime = 60f;
         
+        public enum GameState {
+            Wave,
+            Resting
+        }
+
         private Spawner _spawner;
         private GameObject _nextWaveButtonGameObject;
+        private GameState _gameState = GameState.Wave;
 
         private int _enemiesLeft;
         private int _waveCount = 1;
         private float _restTimer = 0f;
         private bool _rest = false;
+
+        public GameState GetGameState() => _gameState;
 
         private void Awake() {
             _spawner = GetComponent<Spawner>();
@@ -49,6 +55,7 @@ namespace Scripts
                 _rest = false;
                 _spawner.StartWave(_currentWaveEnemyCount);
                 _enemiesLeft = _currentWaveEnemyCount;
+                _gameState = GameState.Wave;
 
                 UpdateWaveUI();
             }
@@ -62,6 +69,7 @@ namespace Scripts
                 _waveCount++;
                 _rest = true;
 
+                _gameState = GameState.Resting;
                 UpdateTimeoutUI();
                 NextWaveButtonAnimationIn();
             }
