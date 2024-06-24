@@ -37,7 +37,7 @@ namespace Scripts
                 _reloadAction = _playerInput.actions["Reload"];
 
                 _shootAction.performed += Shoot;
-                _reloadAction.performed += Reload;
+                _reloadAction.performed += StartReload;
             }
 
             _curBullets = _bulletsInClip;
@@ -86,13 +86,18 @@ namespace Scripts
             _canShoot = false;
             UpdateUI();
             Invoke("ResetShoot", _shootCooldown);
+            _animator.SetTrigger("shoot");
 
             Debug.DrawRay(transform.parent.position, transform.parent.forward * 100f, Color.red, 2f);
         }
 
         private void ResetShoot() => _canShoot = true;
 
-        private void Reload(InputAction.CallbackContext context) {
+        private void StartReload(InputAction.CallbackContext context) {
+            _animator.SetTrigger("reload");
+        }
+
+        public void Reload() {
             int needBullets = _bulletsInClip - _curBullets;
 
             if (needBullets > _rememainingBullets) {
@@ -107,7 +112,7 @@ namespace Scripts
             UpdateUI();
         }
 
-        public void UpdateUI() {
+        private void UpdateUI() {
             if (_bulletsText == null) return;
             _bulletsText.text = $"Pistol\n{_curBullets} / {_rememainingBullets}";
         }
