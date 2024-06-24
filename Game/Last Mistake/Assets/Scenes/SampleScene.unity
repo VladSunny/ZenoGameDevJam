@@ -3475,7 +3475,7 @@ PrefabInstance:
     - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
         type: 3}
       propertyPath: _maxBullets
-      value: 140
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
         type: 3}

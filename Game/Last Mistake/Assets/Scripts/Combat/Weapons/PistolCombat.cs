@@ -34,6 +34,7 @@ namespace Scripts
         private Animator _animator;
 
         private bool _canShoot = true;
+        private bool _reloading = false;
         private int _curBullets = 0;
         private int _rememainingBullets = 0;
 
@@ -66,7 +67,7 @@ namespace Scripts
         }
 
         private void Shoot(InputAction.CallbackContext context) {
-            if (!_canShoot || _curBullets <= 0) return;
+            if (!_canShoot || _reloading || _curBullets <= 0) return;
 
             _curBullets--;
 
@@ -140,6 +141,9 @@ namespace Scripts
         private void ResetShoot() => _canShoot = true;
 
         private void StartReload(InputAction.CallbackContext context) {
+            if (_rememainingBullets <= 0) return;
+
+            _reloading = true;
             _animator.SetTrigger("reload");
         }
 
@@ -155,6 +159,7 @@ namespace Scripts
                 _rememainingBullets -= needBullets;
             }
 
+            _reloading = false;
             UpdateUI();
         }
 
