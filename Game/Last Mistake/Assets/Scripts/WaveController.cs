@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Events;
 
 namespace Scripts
 {
@@ -19,6 +20,8 @@ namespace Scripts
             Wave,
             Resting
         }
+
+        public UnityEvent stateChanged = new UnityEvent();
 
         private Spawner _spawner;
         private GameObject _nextWaveButtonGameObject;
@@ -52,12 +55,7 @@ namespace Scripts
                 UpdateTimeoutUI();
             }
             else if (_rest) {
-                _rest = false;
-                _spawner.StartWave(_currentWaveEnemyCount);
-                _enemiesLeft = _currentWaveEnemyCount;
-                _gameState = GameState.Wave;
-
-                UpdateWaveUI();
+                ChangeState(GameState.Wave);
             }
         }
 
@@ -65,24 +63,16 @@ namespace Scripts
             _enemiesLeft--;
 
             if (_enemiesLeft <= 0) {
-                _restTimer = _restTime;
-                _waveCount++;
-                _rest = true;
-
-                _gameState = GameState.Resting;
-                UpdateTimeoutUI();
-                NextWaveButtonAnimationIn();
+                ChangeState(GameState.Resting);
             }
             else UpdateWaveUI();
         }
 
         private void UpdateWaveUI() {
-            _nextWaveButtonGameObject.SetActive(false);
             _waveInfoText.text = $"Wave: {_waveCount}\nEnemies left: {_enemiesLeft}";
         }
 
         private void UpdateTimeoutUI() {
-            _nextWaveButtonGameObject.SetActive(true);
             _waveInfoText.text = $"Next wave: {_waveCount}\nTime for rest left: {(int)_restTimer}";
         }
 
@@ -90,11 +80,45 @@ namespace Scripts
             _restTimer = 0f;
         }
 
-        private void NextWaveButtonAnimationIn() {
+        private void NextWaveButtonIn() {
+            _nextWaveButtonGameObject.SetActive(true);
+
             RectTransform buttonTransform = _nextWaveButton.GetComponent<RectTransform>();
             
             buttonTransform.localScale = Vector3.zero;
             buttonTransform.DOScale(1f, 0.5f);
+        }
+
+        private async void NextWaveButtonOut() {
+            RectTransform buttonTransform = _nextWaveButton.GetComponent<RectTransform>();
+            
+            await buttonTransform.DOScale(0f, 0.5f).AsyncWaitForCompletion();
+
+            _nextWaveButtonGameObject.SetActive(false);
+        }
+
+        private void ChangeState(GameState state) {
+            _gameState = state;
+
+            if (_gameState == GameState.Resting) {
+                _restTimer = _restTime;
+                _waveCount++;
+                _rest = true;
+                
+                UpdateTimeoutUI();
+                NextWaveButtonIn();
+            }
+            if (_gameState == GameState.Wave) {
+                _rest = false;
+                _spawner.StartWave(_currentWaveEnemyCount);
+                _enemiesLeft = _currentWaveEnemyCount;
+                _gameState = GameState.Wave;
+
+                NextWaveButtonOut();
+                UpdateWaveUI();
+            }
+
+            stateChanged.Invoke();
         }
     }
 }
