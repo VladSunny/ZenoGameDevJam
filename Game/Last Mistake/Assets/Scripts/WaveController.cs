@@ -86,15 +86,15 @@ namespace Scripts
             RectTransform buttonTransform = _nextWaveButton.GetComponent<RectTransform>();
             
             buttonTransform.localScale = Vector3.zero;
-            buttonTransform.DOScale(1f, 0.5f);
+            buttonTransform.DOScale(1f, 0.5f).SetEase(Ease.OutBounce);
         }
 
-        private async void NextWaveButtonOut() {
+        private void NextWaveButtonOut() {
             RectTransform buttonTransform = _nextWaveButton.GetComponent<RectTransform>();
             
-            await buttonTransform.DOScale(0f, 0.5f).AsyncWaitForCompletion();
-
-            _nextWaveButtonGameObject.SetActive(false);
+            buttonTransform.DOScale(0f, 0.5f).OnComplete(
+                () => _nextWaveButtonGameObject.SetActive(false)
+            );
         }
 
         private void ChangeState(GameState state) {

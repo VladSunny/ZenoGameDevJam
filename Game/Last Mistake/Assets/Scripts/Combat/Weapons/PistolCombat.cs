@@ -117,7 +117,7 @@ namespace Scripts
 
             return direction;
         }
-
+        
         private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit) {
             float time = 0f;
             Vector3 startPosition = trail.transform.position;
@@ -128,8 +128,6 @@ namespace Scripts
 
                 yield return null;
             }
-
-            Debug.Log(hit.point);
 
             trail.transform.position = hit.point;
 

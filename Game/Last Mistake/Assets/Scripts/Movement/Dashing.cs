@@ -36,8 +36,6 @@ namespace Scripts.Movement
         }
 
         private void Dash(InputAction.CallbackContext context) {
-            Debug.Log("Dash");
-
             if (!_canDash) return;
 
             _canDash = false;
