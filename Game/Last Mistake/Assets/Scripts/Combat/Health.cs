@@ -36,8 +36,6 @@ namespace Scripts.Combat
                 OnDead.Invoke();
                 _isDead = true;
             }
-
-            Debug.Log($"Health: {_currentHealth}");
         }
 
         private async void Dead() {

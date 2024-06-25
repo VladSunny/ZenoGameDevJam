@@ -32,6 +32,7 @@ namespace Scripts
         private InputAction _shootAction;
         private InputAction _reloadAction;
         private Animator _animator;
+        private WaveController _waveController;
 
         private bool _canShoot = true;
         private bool _reloading = false;
@@ -41,13 +42,14 @@ namespace Scripts
         private void Awake() {
             _playerInput = GetComponentInParent<PlayerInput>();
             _animator = GetComponent<Animator>();
+            _waveController = GameObject.FindGameObjectWithTag("WaveController").GetComponent<WaveController>();
 
             if (_playerInput != null) {
                 _shootAction = _playerInput.actions["Shoot"];
                 _reloadAction = _playerInput.actions["Reload"];
 
                 _shootAction.performed += Shoot;
-                _reloadAction.performed += StartReload;
+                _reloadAction.performed += (InputAction.CallbackContext context) => StartReload();
             }
 
             _curBullets = _bulletsInClip;
@@ -66,8 +68,22 @@ namespace Scripts
                 _shootAction.Disable();
         }
 
+        private bool CanShoot() {
+            if (_curBullets <= 0) {
+                StartReload();
+                return false;
+            }
+
+            return !(
+                !_canShoot ||
+                _reloading ||
+                _curBullets <= 0 ||
+                _waveController.GetGameState() == WaveController.GameState.Resting
+            );
+        }
+
         private void Shoot(InputAction.CallbackContext context) {
-            if (!_canShoot || _reloading || _curBullets <= 0) return;
+            if (!CanShoot()) return;
 
             _curBullets--;
 
@@ -138,8 +154,8 @@ namespace Scripts
 
         private void ResetShoot() => _canShoot = true;
 
-        private void StartReload(InputAction.CallbackContext context) {
-            if (_rememainingBullets <= 0) return;
+        private void StartReload() {
+            if (_rememainingBullets <= 0 || _curBullets == _bulletsInClip) return;
 
             _reloading = true;
             _animator.SetTrigger("reload");

@@ -34,7 +34,9 @@ namespace Scripts
             _shopUIObject.SetActive(false);
         }
 
-        private void OnTriggerEnter(Collider other) {
+        private void OnTriggerStay(Collider other) {
+            if (_openShopButtonObject.activeSelf) return;
+
             if (!other.CompareTag("Player")) return;
 
             if (_waveController.GetGameState() == WaveController.GameState.Resting) {
@@ -47,6 +49,7 @@ namespace Scripts
 
             if (_waveController.GetGameState() == WaveController.GameState.Resting) {
                 OpenShopButtonOut();
+                if (_shopUIObject.activeSelf) ShopUIOut();
             }
         }
 
