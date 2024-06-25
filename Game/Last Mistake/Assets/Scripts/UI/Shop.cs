@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-namespace Scripts
+namespace Scripts.UI
 {
     public class Shop : MonoBehaviour
     {
