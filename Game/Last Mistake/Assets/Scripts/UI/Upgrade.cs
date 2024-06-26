@@ -22,6 +22,7 @@ namespace Scripts.UI
         [SerializeField] private string Name;
         [SerializeField] private UpgradeType Type;
         [SerializeField] private int Cost;
+        [SerializeField] private int CostIncrement;
 
         private GameObject UpgradeGameObject;
         private Button UpgradeButton;
@@ -63,6 +64,7 @@ namespace Scripts.UI
 
         public void LevelUp() {
             Level++;
+            Cost += CostIncrement;
             UpdateUI();
         }
     }

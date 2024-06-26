@@ -11,6 +11,7 @@ namespace Scripts
         [Header("Dependencies")]
         [SerializeField] private TextMeshProUGUI _waveInfoText;
         [SerializeField] private Button _nextWaveButton;
+        [SerializeField] private Wallet _wallet;
 
         [Header("Settings")]
         [SerializeField] private int _currentWaveEnemyCount = 10;
@@ -60,6 +61,7 @@ namespace Scripts
         }
 
         private void EnemyDeathHandler() {
+            _wallet.AddCoins(1);
             _enemiesLeft--;
 
             if (_enemiesLeft <= 0) {

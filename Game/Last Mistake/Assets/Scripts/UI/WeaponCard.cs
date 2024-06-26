@@ -61,6 +61,9 @@ namespace Scripts.UI
             if (upgradeType == UpgradeType.Damage) {
                 _pistolCombat._settings.damage += 5;
             }
+            if (upgradeType == UpgradeType.MaxBulletsInClip) {
+                _pistolCombat._settings.bulletsInClip += 5;
+            }
 
             upgrade.LevelUp();
         }

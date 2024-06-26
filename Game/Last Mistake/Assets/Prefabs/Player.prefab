@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7416858609168335942}
   - component: {fileID: 4845855121569194562}
   - component: {fileID: 831937486153687935}
+  - component: {fileID: 4165935632030836659}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,6 +149,19 @@ MonoBehaviour:
   dashForse: 8
   dashDuration: 0.5
   dashCooldown: 2
+--- !u!114 &4165935632030836659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302367119032769651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd4eeebb0b6644c4918b0bc320a86c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsText: {fileID: 0}
 --- !u!1 &6224124863712947697
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +481,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7485960479123184097}
     m_Modifications:
+    - target: {fileID: 389145237481431426, guid: 054f716d77c365801887a4e25e5b9c27,
+        type: 3}
+      propertyPath: _config
+      value: 
+      objectReference: {fileID: 11400000, guid: 01c3d57df01272dbbb257807eeeb62f4,
+        type: 2}
+    - target: {fileID: 389145237481431426, guid: 054f716d77c365801887a4e25e5b9c27,
+        type: 3}
+      propertyPath: _settings
+      value: 
+      objectReference: {fileID: 11400000, guid: 01c3d57df01272dbbb257807eeeb62f4,
+        type: 2}
+    - target: {fileID: 389145237481431426, guid: 054f716d77c365801887a4e25e5b9c27,
+        type: 3}
+      propertyPath: _bulletTrail
+      value: 
+      objectReference: {fileID: 231260429771431817, guid: 5a306e078984aa279aad4d8204fbc927,
+        type: 3}
+    - target: {fileID: 389145237481431426, guid: 054f716d77c365801887a4e25e5b9c27,
+        type: 3}
+      propertyPath: _bulletParticle
+      value: 
+      objectReference: {fileID: 4613503952293457754, guid: f8e0c5df6045fd8f88a6b86965bc4c9f,
+        type: 3}
     - target: {fileID: 1593771403507752388, guid: 054f716d77c365801887a4e25e5b9c27,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -525,7 +563,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2309691485364693326, guid: 054f716d77c365801887a4e25e5b9c27,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4040050381321565872}
   m_SourcePrefab: {fileID: 100100000, guid: 054f716d77c365801887a4e25e5b9c27, type: 3}
 --- !u!4 &5006075619030503667 stripped
 Transform:
@@ -533,3 +575,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6009791903939153207}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8316668354717279353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2309691485364693326, guid: 054f716d77c365801887a4e25e5b9c27,
+    type: 3}
+  m_PrefabInstance: {fileID: 6009791903939153207}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4040050381321565872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8316668354717279353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9152f617fe9e5b509970a9398086e0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardPrefab: {fileID: 7143754993844406432, guid: f945441f0b443bd119b8ee32c2b33cf6,
+    type: 3}
+  _upgradePrefab: {fileID: 3872537193373770667, guid: f90fde7d7e22e3bf3a908687f7e65d72,
+    type: 3}
+  _cardParent: {fileID: 0}
+  _upgradeParent: {fileID: 0}
+  _upgrades:
+  - Name: Full Reload
+    Type: 4
+    Cost: 10
+    CostIncrement: 5
+  - Name: Max Bullets
+    Type: 0
+    Cost: 10
+    CostIncrement: 5
+  - Name: Fire Rate
+    Type: 1
+    Cost: 10
+    CostIncrement: 5
+  - Name: Spread
+    Type: 2
+    Cost: 10
+    CostIncrement: 5
+  - Name: Damage
+    Type: 3
+    Cost: 10
+    CostIncrement: 5
+  - Name: Bullets In Clip
+    Type: 5
+    Cost: 10
+    CostIncrement: 5

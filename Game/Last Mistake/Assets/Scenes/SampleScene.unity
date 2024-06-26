@@ -1697,8 +1697,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278212376
+  m_fontColor: {r: 0.09438946, g: 0.33962262, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2303,7 +2303,7 @@ GameObject:
   - component: {fileID: 801456227}
   - component: {fileID: 801456226}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Balance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3053,6 +3053,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1136310325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1074403479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4165935632030836659, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 653505288883134407}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd4eeebb0b6644c4918b0bc320a86c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1136310323
 GameObject:
   m_ObjectHideFlags: 0
@@ -3126,6 +3138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waveInfoText: {fileID: 1536488751}
   _nextWaveButton: {fileID: 1529767949}
+  _wallet: {fileID: 1074403479}
   _currentWaveEnemyCount: 1
   _restTime: 60
   stateChanged:
@@ -3749,7 +3762,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 314753788}
   m_HandleRect: {fileID: 314753787}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5383,118 +5396,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _cardParent
+      value: 
+      objectReference: {fileID: 1877687930}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgradeParent
+      value: 
+      objectReference: {fileID: 935416439}
+    - target: {fileID: 4165935632030836659, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: coinsText
+      value: 
+      objectReference: {fileID: 801456226}
     - target: {fileID: 4302367119032769651, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4302367119032769651, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-        type: 3}
-      propertyPath: _config
-      value: 
-      objectReference: {fileID: 11400000, guid: 01c3d57df01272dbbb257807eeeb62f4,
-        type: 2}
-    - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-        type: 3}
-      propertyPath: _spread
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-        type: 3}
-      propertyPath: _settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 01c3d57df01272dbbb257807eeeb62f4,
-        type: 2}
-    - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-        type: 3}
-      propertyPath: BulletTrail
-      value: 
-      objectReference: {fileID: 231260429771431817, guid: 5a306e078984aa279aad4d8204fbc927,
-        type: 3}
-    - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-        type: 3}
-      propertyPath: _maxBullets
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-        type: 3}
-      propertyPath: _bulletTrail
-      value: 
-      objectReference: {fileID: 231260429771431817, guid: 5a306e078984aa279aad4d8204fbc927,
-        type: 3}
     - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
         type: 3}
       propertyPath: _bulletsText
       value: 
       objectReference: {fileID: 674668716}
-    - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-        type: 3}
-      propertyPath: _bulletsInClip
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6197397758753795253, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-        type: 3}
-      propertyPath: _bulletParticle
-      value: 
-      objectReference: {fileID: 4613503952293457754, guid: f8e0c5df6045fd8f88a6b86965bc4c9f,
-        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8316668354717279353, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 653505288883134409}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 741064efaa6a9f64ba8f23b99feaf0d5, type: 3}
---- !u!1 &653505288883134408 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8316668354717279353, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 653505288883134407}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &653505288883134409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653505288883134408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9152f617fe9e5b509970a9398086e0a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cardPrefab: {fileID: 7143754993844406432, guid: f945441f0b443bd119b8ee32c2b33cf6,
-    type: 3}
-  _upgradePrefab: {fileID: 3872537193373770667, guid: f90fde7d7e22e3bf3a908687f7e65d72,
-    type: 3}
-  _cardParent: {fileID: 1877687930}
-  _upgradeParent: {fileID: 935416439}
-  _upgrades:
-  - Name: Full Reload
-    Type: 4
-    Cost: 10
-  - Name: Max Bullets
-    Type: 0
-    Cost: 10
-  - Name: Fire Rate
-    Type: 1
-    Cost: 10
-  - Name: Spread
-    Type: 2
-    Cost: 10
-  - Name: Damage
-    Type: 3
-    Cost: 10
-  - Name: Bullets In Clip
-    Type: 5
-    Cost: 10
 --- !u!1001 &1276030528268742565
 PrefabInstance:
   m_ObjectHideFlags: 0
