@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using System;
+using DG.Tweening;
 
 namespace Scripts.UI
 {
@@ -11,7 +11,9 @@ namespace Scripts.UI
         MaxBullets,
         FireRate,
         Spread,
-        Damage
+        Damage,
+        FullReload,
+        MaxBulletsInClip
     }
 
     [System.Serializable]
@@ -39,8 +41,7 @@ namespace Scripts.UI
 
             SetButtonListener(callback);
 
-            UpgradeText.text = $"{Name}\nLevel: {Level}";
-            CostText.text = $"${Cost}";
+            UpdateUI();
         }
 
         public UpgradeType GetUpgradeType() => Type;
@@ -49,7 +50,21 @@ namespace Scripts.UI
 
         public void Hide() => UpgradeGameObject.SetActive(false);
 
-        public void Show() => UpgradeGameObject.SetActive(true);
+        public void Show() {
+            UpgradeGameObject.SetActive(true);
+            UpgradeGameObject.transform.localScale = Vector3.zero;
+            UpgradeGameObject.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBounce);
+        }
+
+        public void UpdateUI() {
+            UpgradeText.text = $"{Name}\nLevel: {Level}";
+            CostText.text = $"${Cost}";
+        }
+
+        public void LevelUp() {
+            Level++;
+            UpdateUI();
+        }
     }
 
     public class CreateUpgrades : MonoBehaviour

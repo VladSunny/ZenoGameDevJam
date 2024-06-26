@@ -18,11 +18,13 @@ namespace Scripts.UI
         private GameObject _card;
         private TextMeshProUGUI _cardHeader;
         private TabButton _cardTabButton;
+        private PistolCombat _pistolCombat;
 
         private void Awake() {
             _card = Instantiate(_cardPrefab, _cardParent);
             _cardHeader = _card.GetComponentInChildren<TextMeshProUGUI>();
             _cardTabButton = _card.GetComponent<TabButton>();
+            _pistolCombat = GetComponent<PistolCombat>();
 
             _cardTabButton.OnTabSelected.AddListener(ShowUpgrades);
             _cardTabButton.OnTabDeselected.AddListener(HideUpgrades);
@@ -34,14 +36,33 @@ namespace Scripts.UI
 
         private void CreateUpgrades() {
             foreach (Upgrade upgrade in _upgrades) {
-                upgrade.Initialize(_upgradePrefab, _upgradeParent, () => UpgradeHandler(upgrade.GetUpgradeType()));
+                upgrade.Initialize(_upgradePrefab, _upgradeParent, () => UpgradeHandler(upgrade));
             }
 
             HideUpgrades();
         }
 
-        private void UpgradeHandler(UpgradeType upgradeType) {
+        private void UpgradeHandler(Upgrade upgrade) {
+            UpgradeType upgradeType = upgrade.GetUpgradeType();
             Debug.Log(upgradeType);
+
+            if (upgradeType == UpgradeType.FullReload) {
+                _pistolCombat.ResetPistol();
+            }
+            if (upgradeType == UpgradeType.MaxBullets) {
+                _pistolCombat._settings.maxBullets += 5;
+            }
+            if (upgradeType == UpgradeType.FireRate) {
+                _pistolCombat._settings.shootCooldown /= 1.3f;
+            }
+            if (upgradeType == UpgradeType.Spread) {
+                _pistolCombat._settings.spread /= 1.3f;
+            }
+            if (upgradeType == UpgradeType.Damage) {
+                _pistolCombat._settings.damage += 5;
+            }
+
+            upgrade.LevelUp();
         }
 
         private void HideUpgrades() {

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace Scripts
 {
@@ -29,7 +30,10 @@ namespace Scripts
             tabGroup.OnTabExit(this);
         }
 
-        public void ChangeColor(Color color) => background.color = color;
+        public void ChangeColor(Color color) {
+            background.DOColor(color, 0.5f);
+            // background.color = color
+        }
 
         private void Awake() {
             background = GetComponent<Image>();

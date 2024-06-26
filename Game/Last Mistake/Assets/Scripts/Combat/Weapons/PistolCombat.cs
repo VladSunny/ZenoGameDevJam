@@ -4,6 +4,7 @@ using Scripts.Combat;
 using Scripts.Movement;
 using TMPro;
 using System.Collections;
+using Scripts.Config;
 
 namespace Scripts
 {
@@ -13,13 +14,7 @@ namespace Scripts
         [SerializeField] private Transform _muzzle;
 
         [Header("Settings")]
-        [SerializeField] private int _bulletsInClip = 7;
-        [SerializeField] private int _maxBullets = 35;
-        [SerializeField] private float _damage = 10f;
-        [SerializeField] private float _spread = 0.01f;
-        [SerializeField] private float _force = 2f;
-        [SerializeField] private float _concussion = 0.5f;
-        [SerializeField] private float _shootCooldown = 0.5f;
+        [SerializeField] private PistolConfig _config;
 
         [Header("UI")]
         [SerializeField] private TextMeshProUGUI _bulletsText;
@@ -27,6 +22,8 @@ namespace Scripts
         [Header("Effects")]
         [SerializeField] private TrailRenderer _bulletTrail;
         [SerializeField] private ParticleSystem _bulletParticle;
+
+        [HideInInspector] public PistolConfig _settings;
 
         private PlayerInput _playerInput;
         private InputAction _shootAction;
@@ -44,6 +41,8 @@ namespace Scripts
             _animator = GetComponent<Animator>();
             _waveController = GameObject.FindGameObjectWithTag("WaveController").GetComponent<WaveController>();
 
+            _settings = Instantiate(_config);
+
             if (_playerInput != null) {
                 _shootAction = _playerInput.actions["Shoot"];
                 _reloadAction = _playerInput.actions["Reload"];
@@ -52,10 +51,7 @@ namespace Scripts
                 _reloadAction.performed += (InputAction.CallbackContext context) => StartReload();
             }
 
-            _curBullets = _bulletsInClip;
-            _rememainingBullets = _maxBullets - _bulletsInClip;
-
-            UpdateUI();
+            ResetPistol();
         }
 
         private void OnEnable() {
@@ -100,25 +96,25 @@ namespace Scripts
                 Health enemyHealth = hit.collider.GetComponent<Health>();
                 if (enemyHealth != null)
                 {
-                    enemyHealth.TakeDamage(_damage);
+                    enemyHealth.TakeDamage(_settings.damage);
                 }
 
                 Rigidbody rigidbody = hit.collider.GetComponent<Rigidbody>();
                 if (rigidbody != null)
                 {
-                    rigidbody.AddForce(transform.parent.forward * _force, ForceMode.Impulse);
+                    rigidbody.AddForce(transform.parent.forward * _settings.force, ForceMode.Impulse);
                 }
 
                 EnemyMovement enemyMovement = hit.collider.GetComponent<EnemyMovement>();
                 if (enemyMovement != null)
                 {
-                    enemyMovement.Concussion(_concussion);
+                    enemyMovement.Concussion(_settings.concussion);
                 }
             }
 
             _canShoot = false;
             UpdateUI();
-            Invoke("ResetShoot", _shootCooldown);
+            Invoke("ResetShoot", _settings.shootCooldown);
             _animator.SetTrigger("shoot");
 
             Debug.DrawRay(_muzzle.position, direction * 100f, Color.red, 2f);
@@ -127,7 +123,11 @@ namespace Scripts
         private Vector3 GetDirection() {
             Vector3 direction = transform.parent.forward;
 
-            direction += new Vector3(Random.Range(-_spread, _spread), 0f, Random.Range(-_spread, _spread));
+            direction += new Vector3(
+                Random.Range(-_settings.spread, _settings.spread),
+                0f,
+                Random.Range(-_settings.spread, _settings.spread)
+            );
 
             direction.Normalize();
 
@@ -155,14 +155,14 @@ namespace Scripts
         private void ResetShoot() => _canShoot = true;
 
         private void StartReload() {
-            if (_rememainingBullets <= 0 || _curBullets == _bulletsInClip) return;
+            if (_rememainingBullets <= 0 || _curBullets == _settings.bulletsInClip) return;
 
             _reloading = true;
             _animator.SetTrigger("reload");
         }
 
         public void Reload() {
-            int needBullets = _bulletsInClip - _curBullets;
+            int needBullets = _settings.bulletsInClip - _curBullets;
 
             if (needBullets > _rememainingBullets) {
                 _curBullets += _rememainingBullets;
@@ -174,6 +174,13 @@ namespace Scripts
             }
 
             _reloading = false;
+            UpdateUI();
+        }
+
+        public void ResetPistol() {
+            _curBullets = _settings.bulletsInClip;
+            _rememainingBullets = _settings.maxBullets - _settings.bulletsInClip;
+
             UpdateUI();
         }
 
