@@ -17,35 +17,19 @@ namespace Scripts.UI
 
         private GameObject _card;
         private TextMeshProUGUI _cardHeader;
-        private Selectable _cardSelectable;
+        private TabButton _cardTabButton;
 
         private void Awake() {
             _card = Instantiate(_cardPrefab, _cardParent);
             _cardHeader = _card.GetComponentInChildren<TextMeshProUGUI>();
-            _cardSelectable = _card.GetComponent<Selectable>();
+            _cardTabButton = _card.GetComponent<TabButton>();
 
-            AddEventTrigger(_cardSelectable.gameObject, EventTriggerType.Select, OnCardSelect);
-            AddEventTrigger(_cardSelectable.gameObject, EventTriggerType.Deselect, OnCardDeselect);
+            _cardTabButton.OnTabSelected.AddListener(ShowUpgrades);
+            _cardTabButton.OnTabDeselected.AddListener(HideUpgrades);
 
             _cardHeader.text = gameObject.name;
 
             CreateUpgrades();
-        }
-
-        private void AddEventTrigger(GameObject target, EventTriggerType eventType, UnityEngine.Events.UnityAction<BaseEventData> callback)
-        {
-            EventTrigger trigger = target.GetComponent<EventTrigger>();
-            if (trigger == null)
-            {
-                trigger = target.AddComponent<EventTrigger>();
-            }
-
-            EventTrigger.Entry entry = new EventTrigger.Entry
-            {
-                eventID = eventType
-            };
-            entry.callback.AddListener(callback);
-            trigger.triggers.Add(entry);
         }
 
         private void CreateUpgrades() {
@@ -67,7 +51,6 @@ namespace Scripts.UI
         }
 
         private void ShowUpgrades() {
-            Debug.Log(_upgrades);
             foreach (Upgrade upgrade in _upgrades) {
                 upgrade.Show();
             }
