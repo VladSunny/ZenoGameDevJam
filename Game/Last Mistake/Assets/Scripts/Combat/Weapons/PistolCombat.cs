@@ -155,7 +155,7 @@ namespace Scripts
         private void ResetShoot() => _canShoot = true;
 
         private void StartReload() {
-            if (_rememainingBullets <= 0 || _curBullets == _settings.bulletsInClip) return;
+            if (_rememainingBullets <= 0 || _curBullets == _settings.bulletsInClip || _reloading) return;
 
             _reloading = true;
             _animator.SetTrigger("reload");
@@ -178,8 +178,14 @@ namespace Scripts
         }
 
         public void ResetPistol() {
-            _curBullets = _settings.bulletsInClip;
-            _rememainingBullets = _settings.maxBullets - _settings.bulletsInClip;
+            if (_settings.bulletsInClip <= _settings.maxBullets) {
+                _curBullets = _settings.bulletsInClip;
+                _rememainingBullets = _settings.maxBullets - _settings.bulletsInClip;
+            }
+            else {
+                _curBullets = _settings.maxBullets;
+                _rememainingBullets = 0;
+            }
 
             UpdateUI();
         }

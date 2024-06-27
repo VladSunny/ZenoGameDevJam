@@ -16,6 +16,7 @@ namespace Scripts
         [Header("Settings")]
         [SerializeField] private int _currentWaveEnemyCount = 10;
         [SerializeField] private float _restTime = 60f;
+        [SerializeField] private int _reward = 1;
         
         public enum GameState {
             Wave,
@@ -61,7 +62,7 @@ namespace Scripts
         }
 
         private void EnemyDeathHandler() {
-            _wallet.AddCoins(1);
+            _wallet.AddCoins(_reward);
             _enemiesLeft--;
 
             if (_enemiesLeft <= 0) {
