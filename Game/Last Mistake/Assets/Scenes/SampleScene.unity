@@ -3053,18 +3053,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1136310325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1074403479 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4165935632030836659, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 653505288883134407}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fd4eeebb0b6644c4918b0bc320a86c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1136310323
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,9 +3126,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waveInfoText: {fileID: 1536488751}
   _nextWaveButton: {fileID: 1529767949}
-  _wallet: {fileID: 1074403479}
   _currentWaveEnemyCount: 1
   _restTime: 60
+  _reward: 10
+  _enemyCountIncrement: 5
   stateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5406,6 +5395,131 @@ PrefabInstance:
       propertyPath: _upgradeParent
       value: 
       objectReference: {fileID: 935416439}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[0]._cost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[0]._name
+      value: Full reload
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[0]._type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[1]._cost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[1]._name
+      value: Max bullets
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[1]._type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[2]._cost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[2]._name
+      value: Fire Rate
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[2]._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[3]._cost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[3]._name
+      value: Spread
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[3]._type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[4]._cost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[4]._name
+      value: Damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[4]._type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[5]._cost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[5]._name
+      value: Max bullets in Clip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[5]._type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[0]._hasMaxLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[0]._costIncrement
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[1]._costIncrement
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[2]._costIncrement
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[3]._costIncrement
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[4]._costIncrement
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
+        type: 3}
+      propertyPath: _upgrades.Array.data[5]._costIncrement
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4165935632030836659, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
         type: 3}
       propertyPath: coinsText

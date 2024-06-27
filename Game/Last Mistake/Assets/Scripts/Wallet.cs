@@ -21,6 +21,8 @@ namespace Scripts
             UpdateUI();
         }
 
+        public int Balance() => coins;
+
         public void UpdateUI() {
             coinsText.text = $"${coins}";
         }

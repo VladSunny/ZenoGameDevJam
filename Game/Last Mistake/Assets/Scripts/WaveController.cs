@@ -11,12 +11,12 @@ namespace Scripts
         [Header("Dependencies")]
         [SerializeField] private TextMeshProUGUI _waveInfoText;
         [SerializeField] private Button _nextWaveButton;
-        [SerializeField] private Wallet _wallet;
 
         [Header("Settings")]
         [SerializeField] private int _currentWaveEnemyCount = 10;
         [SerializeField] private float _restTime = 60f;
         [SerializeField] private int _reward = 1;
+        [SerializeField] private int _enemyCountIncrement = 5;
         
         public enum GameState {
             Wave,
@@ -28,6 +28,7 @@ namespace Scripts
         private Spawner _spawner;
         private GameObject _nextWaveButtonGameObject;
         private GameState _gameState = GameState.Wave;
+        private Wallet _wallet;
 
         private int _enemiesLeft;
         private int _waveCount = 1;
@@ -38,6 +39,7 @@ namespace Scripts
 
         private void Awake() {
             _spawner = GetComponent<Spawner>();
+            _wallet = GameObject.FindGameObjectWithTag("Player").GetComponent<Wallet>();
 
             _spawner.onEnemyDied.AddListener(EnemyDeathHandler);
 
@@ -107,6 +109,7 @@ namespace Scripts
                 _restTimer = _restTime;
                 _waveCount++;
                 _rest = true;
+                _currentWaveEnemyCount += _enemyCountIncrement;
                 
                 UpdateTimeoutUI();
                 NextWaveButtonIn();

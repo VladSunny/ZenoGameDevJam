@@ -14,7 +14,7 @@ namespace Scripts.UI
         [SerializeField] private Transform _upgradeParent;
         [SerializeField] private Upgrade[] _upgrades;
 
-
+        private Wallet _wallet;
         private GameObject _card;
         private TextMeshProUGUI _cardHeader;
         private TabButton _cardTabButton;
@@ -25,6 +25,7 @@ namespace Scripts.UI
             _cardHeader = _card.GetComponentInChildren<TextMeshProUGUI>();
             _cardTabButton = _card.GetComponent<TabButton>();
             _pistolCombat = GetComponent<PistolCombat>();
+            _wallet = GameObject.FindGameObjectWithTag("Player").GetComponent<Wallet>();
 
             _cardTabButton.OnTabSelected.AddListener(ShowUpgrades);
             _cardTabButton.OnTabDeselected.AddListener(HideUpgrades);
@@ -43,6 +44,12 @@ namespace Scripts.UI
         }
 
         private void UpgradeHandler(Upgrade upgrade) {
+            if (_wallet.Balance() < upgrade.Price() || !upgrade.CanUpgrade()) return;
+
+            _wallet.AddCoins(-upgrade.Price());
+
+            upgrade.LevelUp();
+
             UpgradeType upgradeType = upgrade.GetUpgradeType();
             Debug.Log(upgradeType);
 
@@ -64,8 +71,6 @@ namespace Scripts.UI
             if (upgradeType == UpgradeType.MaxBulletsInClip) {
                 _pistolCombat._settings.bulletsInClip += 5;
             }
-
-            upgrade.LevelUp();
         }
 
         private void HideUpgrades() {

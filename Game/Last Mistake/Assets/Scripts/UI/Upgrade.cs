@@ -19,10 +19,12 @@ namespace Scripts.UI
     [System.Serializable]
     public class Upgrade
     {
-        [SerializeField] private string Name;
-        [SerializeField] private UpgradeType Type;
-        [SerializeField] private int Cost;
-        [SerializeField] private int CostIncrement;
+        [SerializeField] private string _name;
+        [SerializeField] private UpgradeType _type;
+        [SerializeField] private int _cost;
+        [SerializeField] private int _costIncrement;
+        [SerializeField] bool _hasMaxLevel = true;
+        [SerializeField] private int _maxLevel = 5;
 
         private GameObject UpgradeGameObject;
         private Button UpgradeButton;
@@ -45,7 +47,7 @@ namespace Scripts.UI
             UpdateUI();
         }
 
-        public UpgradeType GetUpgradeType() => Type;
+        public UpgradeType GetUpgradeType() => _type;
 
         public void SetButtonListener(UnityAction callback) => UpgradeButton.onClick.AddListener(callback);
 
@@ -58,15 +60,22 @@ namespace Scripts.UI
         }
 
         public void UpdateUI() {
-            UpgradeText.text = $"{Name}\nLevel: {Level}";
-            CostText.text = $"${Cost}";
+            UpgradeText.text = $"{_name}\nLevel: {Level}";
+            CostText.text = $"${_cost}";
         }
 
-        public void LevelUp() {
+        public bool LevelUp() {
+            if (!CanUpgrade()) return false;
+
             Level++;
-            Cost += CostIncrement;
+            _cost += _costIncrement;
             UpdateUI();
+            return true;
         }
+
+        public bool CanUpgrade() => !(_hasMaxLevel && Level >= _maxLevel);
+
+        public int Price() => _cost;
     }
 
     public class CreateUpgrades : MonoBehaviour
