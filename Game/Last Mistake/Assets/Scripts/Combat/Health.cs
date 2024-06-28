@@ -47,5 +47,7 @@ namespace Scripts.Combat
 
             Destroy(gameObject, 5f);
         }
+
+        public bool IsDead() => _isDead;
     }
 }

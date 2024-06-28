@@ -69,12 +69,13 @@ namespace Scripts
                 StartReload();
                 return false;
             }
-
             return !(
                 !_canShoot ||
                 _reloading ||
                 _curBullets <= 0 ||
-                _waveController.GetGameState() == WaveController.GameState.Resting
+                _waveController.GetGameState() != WaveController.GameState.Wave ||
+                _waveController.isPaused ||
+                _waveController.IsGameOver()
             );
         }
 

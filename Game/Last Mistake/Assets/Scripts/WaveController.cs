@@ -20,10 +20,13 @@ namespace Scripts
         
         public enum GameState {
             Wave,
-            Resting
+            Resting,
+            GameOver,
         }
 
         public UnityEvent stateChanged = new UnityEvent();
+        public UnityEvent onGameOver = new UnityEvent();
+        public bool isPaused = false;
 
         private Spawner _spawner;
         private GameObject _nextWaveButtonGameObject;
@@ -34,6 +37,7 @@ namespace Scripts
         private int _waveCount = 1;
         private float _restTimer = 0f;
         private bool _rest = false;
+        private bool _gameOver = false;
 
         public GameState GetGameState() => _gameState;
 
@@ -102,7 +106,9 @@ namespace Scripts
             );
         }
 
-        private void ChangeState(GameState state) {
+        public void ChangeState(GameState state) {
+            if (_gameState == GameState.GameOver) return;
+
             _gameState = state;
 
             if (_gameState == GameState.Resting) {
@@ -123,8 +129,15 @@ namespace Scripts
                 NextWaveButtonOut();
                 UpdateWaveUI();
             }
+            if (_gameState == GameState.GameOver) {
+                Time.timeScale = 0f;
+                _gameOver = true;
+                onGameOver.Invoke();
+            }
 
             stateChanged.Invoke();
         }
+
+        public bool IsGameOver() => _gameOver;
     }
 }

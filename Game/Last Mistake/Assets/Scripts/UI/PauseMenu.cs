@@ -14,9 +14,16 @@ namespace Scripts.UI
         public static bool GameIsPaused = false;
 
         private InputAction _pauseAction;
+        private Image _pauseMenuImage;
+        private Color _normalMenuColor;
+        private WaveController _waveController;
 
         private void Awake() {
             _pauseAction = GetComponent<PlayerInput>().actions["PauseMenu"];
+            _pauseMenuImage = _pauseMenuUI.GetComponent<Image>();
+            _waveController = GameObject.FindGameObjectWithTag("WaveController").GetComponent<WaveController>();
+
+            _normalMenuColor = _pauseMenuUI.GetComponent<Image>().color;
 
             _pauseMenuUI.SetActive(false);
 
@@ -43,13 +50,23 @@ namespace Scripts.UI
 
         private void Resume() {
             GameIsPaused = false;
-            _pauseMenuUI.SetActive(false);
-            Time.timeScale = 1f;
+            _waveController.isPaused = false;
+
+            _pauseMenuImage.DOFade(0f, 0.5f).SetUpdate(true).OnComplete(() => {
+                _pauseMenuUI.SetActive(false);
+                Time.timeScale = 1f;
+            });
         }
 
         private void Pause() {
             GameIsPaused = true;
+            _waveController.isPaused = true;
+
             _pauseMenuUI.SetActive(true);
+
+            _pauseMenuImage.color = new Color(_normalMenuColor.r, _normalMenuColor.g, _normalMenuColor.b, 0f);
+            _pauseMenuImage.DOFade(_normalMenuColor.a, 0.5f).SetUpdate(true);
+            
             Time.timeScale = 0f;
         }
     }
