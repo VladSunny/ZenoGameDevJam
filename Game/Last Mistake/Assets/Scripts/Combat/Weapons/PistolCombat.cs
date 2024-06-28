@@ -12,6 +12,7 @@ namespace Scripts
     {
         [Header("Dependencies")]
         [SerializeField] private Transform _muzzle;
+        [SerializeField] private LayerMask _layerMask;
 
         [Header("Settings")]
         [SerializeField] private PistolConfig _config;
@@ -22,6 +23,7 @@ namespace Scripts
         [Header("Effects")]
         [SerializeField] private TrailRenderer _bulletTrail;
         [SerializeField] private ParticleSystem _bulletParticle;
+        [SerializeField] private float _particleOffset = 0.3f;
 
         [HideInInspector] public PistolConfig _settings;
 
@@ -87,7 +89,7 @@ namespace Scripts
             Vector3 direction = GetDirection();
 
             RaycastHit hit;
-            if (Physics.Raycast(_muzzle.position, direction, out hit, 100f))
+            if (Physics.Raycast(_muzzle.position, direction, out hit, 100f, _layerMask, QueryTriggerInteraction.Ignore))
             {
                 if (_bulletTrail != null) {
                     TrailRenderer trail = Instantiate(_bulletTrail, _muzzle.position, Quaternion.identity);
@@ -148,7 +150,7 @@ namespace Scripts
 
             trail.transform.position = hit.point;
 
-            Instantiate(_bulletParticle, hit.point + hit.normal * 0.5f, Quaternion.LookRotation(hit.normal));
+            Instantiate(_bulletParticle, hit.point + hit.normal * _particleOffset, Quaternion.LookRotation(hit.normal));
 
             Destroy(trail.gameObject, trail.time);
         }

@@ -11,6 +11,8 @@ namespace Scripts.Movement
         [SerializeField] private float _speed = 5f;
         [SerializeField] private float _pathUpdateInterval = 0.5f;
         [SerializeField] private float _maxConcussionTime = 3f;
+        [SerializeField] private bool _initializeFromEditor = false;
+        [SerializeField] private float _rotationSpeed = 5f;
 
         private NavMeshAgent _agent;
         private NavMeshPath _path;
@@ -22,8 +24,14 @@ namespace Scripts.Movement
         private float _concussionTime = 0f;
         private bool _isDead = false;
 
+        private void Awake() {
+            if (_initializeFromEditor) {
+                Initialize(_playerTransform);
+            }
+        }
+
         public void Initialize(Transform playerTransform) {
-            _agent = GetComponent<NavMeshAgent>();
+            _agent = GetComponentInChildren<NavMeshAgent>();
             _rb = GetComponent<Rigidbody>();
             _health = GetComponent<Health>();
 
@@ -64,8 +72,10 @@ namespace Scripts.Movement
             if (_path.status == NavMeshPathStatus.PathComplete && _currentPathIndex < _path.corners.Length) {
                 Vector3 targetPosition = _path.corners[_currentPathIndex];
                 Vector3 direction = (targetPosition - transform.position).normalized;
+                Vector3 directionForRotate = new Vector3(direction.x, 0, direction.z);
 
                 _rb.AddForce(direction * _speed, ForceMode.Force);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionForRotate), _rotationSpeed * Time.deltaTime);
 
                 if (Vector3.Distance(transform.position, targetPosition) < 0.1f + _agent.height / 2) {
                     _currentPathIndex++;
