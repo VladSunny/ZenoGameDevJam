@@ -165,7 +165,7 @@ namespace Scripts.Combat
         }
 
         public void UpdateUI() {
-            if (_bulletsText == null) return;
+            if (_bulletsText == null || this.isActiveAndEnabled == false) return;
             _bulletsText.text = $"{gameObject.name}\n{_curBullets} / {_rememainingBullets}";
         }
     }

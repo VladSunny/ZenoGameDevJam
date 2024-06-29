@@ -75,7 +75,10 @@ namespace Scripts.Movement
                 Vector3 directionForRotate = new Vector3(direction.x, 0, direction.z);
 
                 _rb.AddForce(direction * _speed, ForceMode.Force);
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionForRotate), _rotationSpeed * Time.deltaTime);
+
+                if (directionForRotate != Vector3.zero) {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionForRotate), _rotationSpeed * Time.deltaTime);
+                }
 
                 if (Vector3.Distance(transform.position, targetPosition) < 0.1f + _agent.height / 2) {
                     _currentPathIndex++;
