@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletsInClip: 10
   maxBullets: 50
-  damage: 10
+  damage: 15
   spread: 0.3
   force: 2
   concussion: 0.5

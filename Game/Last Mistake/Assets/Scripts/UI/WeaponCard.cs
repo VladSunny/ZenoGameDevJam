@@ -54,7 +54,7 @@ namespace Scripts.UI
             Debug.Log(upgradeType);
 
             if (upgradeType == UpgradeType.FullReload) {
-                _pistolCombat.ResetPistol();
+                _pistolCombat.ResetWeapon();
             }
             if (upgradeType == UpgradeType.MaxBullets) {
                 _pistolCombat._settings.maxBullets += 5;

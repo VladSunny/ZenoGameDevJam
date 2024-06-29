@@ -12,7 +12,7 @@ namespace Scripts
         [SerializeField] private Transform _playerTransform;
 
         [Header("Settings")]
-        [SerializeField] private GameObject _prefab;
+        [SerializeField] private GameObject[] _prefabs;
         [SerializeField] private Vector2 _minMaxDelay = new Vector2(1f, 3f);
 
         public UnityEvent onEnemyDied = new UnityEvent();
@@ -28,7 +28,10 @@ namespace Scripts
                 await UniTask.Delay((int)Random.Range(_minMaxDelay.x, _minMaxDelay.y) * 1000);
 
                 int spawnPointIndex = Random.Range(1, _spawnPoints.Length);
-                GameObject obj = Instantiate(_prefab, _spawnPoints[spawnPointIndex].position, Quaternion.identity);
+                GameObject obj = Instantiate(
+                    _prefabs[Random.Range(0, _prefabs.Length)],
+                    _spawnPoints[spawnPointIndex].position,
+                    Quaternion.identity);
                 obj.GetComponent<EnemyMovement>().Initialize(_playerTransform);
                 obj.GetComponent<Health>().OnDead.AddListener(EnemyDeathHandler);
             }
