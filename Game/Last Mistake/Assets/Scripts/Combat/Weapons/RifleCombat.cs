@@ -29,15 +29,19 @@ namespace Scripts
             }
         }
 
-        private void OnEnable() {
-            if (_shootAction != null)
-                _shootAction.Enable();
-        }
+        // private void OnEnable() {
+        //     if (_shootAction != null) {
+        //         _shootAction.started += OnActionStarted;
+        //         _shootAction.canceled += OnActionCanceled;
+        //     }
+        // }
 
-        private void OnDisable() {
-            if (_shootAction != null)
-                _shootAction.Disable();
-        }
+        // private void OnDisable() {
+        //     if (_shootAction != null) {
+        //         _shootAction.started -= OnActionStarted;
+        //         _shootAction.canceled -= OnActionCanceled;
+        //     }
+        // }
 
         protected override bool CanShoot()
         {

@@ -164,7 +164,7 @@ namespace Scripts.Combat
             UpdateUI();
         }
 
-        private void UpdateUI() {
+        public void UpdateUI() {
             if (_bulletsText == null) return;
             _bulletsText.text = $"{gameObject.name}\n{_curBullets} / {_rememainingBullets}";
         }
