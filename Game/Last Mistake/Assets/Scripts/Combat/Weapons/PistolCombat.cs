@@ -25,7 +25,7 @@ namespace Scripts
                 _shootAction = _playerInput.actions["Shoot"];
                 _reloadAction = _playerInput.actions["Reload"];
 
-                _shootAction.performed += Shoot;
+                _shootAction.performed += (InputAction.CallbackContext context) => Shoot();
                 _reloadAction.performed += (InputAction.CallbackContext context) => StartReload();
             }
         }
@@ -47,9 +47,9 @@ namespace Scripts
             return _readyForShoot;
         }
 
-        protected override void Shoot(InputAction.CallbackContext context)
+        protected override void Shoot()
         {
-            base.Shoot(context);
+            base.Shoot();
 
             Invoke("ResetShoot", _settings.shootCooldown);
         }

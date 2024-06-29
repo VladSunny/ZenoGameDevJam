@@ -56,7 +56,7 @@ namespace Scripts.Combat
             );
         }
 
-        protected virtual void Shoot(InputAction.CallbackContext context) {
+        protected virtual void Shoot() {
             if (!CanShoot()) return;
 
             _curBullets--;
