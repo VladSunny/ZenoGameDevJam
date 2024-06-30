@@ -19,18 +19,28 @@ namespace Scripts.UI
         private TextMeshProUGUI _cardHeader;
         private TabButton _cardTabButton;
         private GunBase _weapon;
-        private Transform _cardParent;
-        private Transform _upgradeParent;
+        [SerializeField] private Transform _cardParent;
+        [SerializeField] private Transform _upgradeParent;
+
+        private GameObject _cardParentObject;
+        private GameObject _upgradeParentObject;
 
         private void Awake() {
-            _cardParent = GameObject.FindGameObjectWithTag("CardParent").transform;
-            _upgradeParent = GameObject.FindGameObjectWithTag("UpgradeParent").transform;
+            _weapon = GetComponent<GunBase>();
+            _wallet = GameObject.FindGameObjectWithTag("Player").GetComponent<Wallet>();
+            
+            if (_cardParent == null || _upgradeParent == null) {
+                _cardParentObject = GameObject.FindGameObjectWithTag("CardParent");
+                _upgradeParentObject = GameObject.FindGameObjectWithTag("UpgradeParent");
+                
+                _cardParent = _cardParentObject.transform;
+                _upgradeParent = _upgradeParentObject.transform;
+            }
+        
 
             _card = Instantiate(_cardPrefab, _cardParent);
             _cardHeader = _card.GetComponentInChildren<TextMeshProUGUI>();
             _cardTabButton = _card.GetComponent<TabButton>();
-            _weapon = GetComponent<GunBase>();
-            _wallet = GameObject.FindGameObjectWithTag("Player").GetComponent<Wallet>();
 
             _cardTabButton.OnTabSelected.AddListener(ShowUpgrades);
             _cardTabButton.OnTabDeselected.AddListener(HideUpgrades);

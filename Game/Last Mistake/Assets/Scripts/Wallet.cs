@@ -7,10 +7,9 @@ namespace Scripts
 {
     public class Wallet : MonoBehaviour
     {
+        [SerializeField] private int coins;
         [Header("Dependencies")]
         [SerializeField] private TextMeshProUGUI coinsText;
-
-        private int coins = 0;
 
         private void Awake() {
             UpdateUI();
