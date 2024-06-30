@@ -24,14 +24,20 @@ namespace Scripts.Movement
 
             _dashAction = _playerInput.actions["Dashing"];
 
-            _dashAction.performed += Dash;
+            // _dashAction.performed += Dash;
         }
 
         private void OnEnable() {
+            if (_dashAction == null) return;
+            
             _dashAction.Enable();
+            _dashAction.performed += Dash;
         }
 
         private void OnDisable() {
+            if (_dashAction == null) return;
+
+            _dashAction.performed -= Dash;
             _dashAction.Disable();
         }
 

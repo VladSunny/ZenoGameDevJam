@@ -5,6 +5,9 @@ using Scripts.Movement;
 using TMPro;
 using System.Collections;
 using Scripts.Config;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using System;
 
 namespace Scripts
 {
@@ -24,25 +27,24 @@ namespace Scripts
             if (_playerInput != null) {
                 _shootAction = _playerInput.actions["Shoot"];
                 _reloadAction = _playerInput.actions["Reload"];
-
-                _shootAction.performed += (InputAction.CallbackContext context) => Shoot();
-                _reloadAction.performed += (InputAction.CallbackContext context) => StartReload();
             }
         }
 
-        // private void OnEnable() {
-        //     if (_shootAction != null) {
-        //         _shootAction.performed += (InputAction.CallbackContext context) => Shoot();
-        //         _reloadAction.performed += (InputAction.CallbackContext context) => StartReload();
-        //     }
-        // }
+        private void OnEnable() {
+            if (_shootAction != null)
+                _shootAction.performed += ctx => Shoot();
 
-        // private void OnDisable() {
-        //     if (_shootAction != null) {
-        //         _shootAction.performed -= (InputAction.CallbackContext context) => Shoot();
-        //         _reloadAction.performed -= (InputAction.CallbackContext context) => StartReload();
-        //     }
-        // }
+            if (_reloadAction != null)
+                _reloadAction.performed += ctx => StartReload();
+        }
+
+        private void OnDisable() {
+            if (_shootAction != null)
+                _shootAction.performed -= ctx => Shoot();
+
+            if (_reloadAction != null)
+                _reloadAction.performed -= ctx => StartReload();
+        }
 
         protected override bool CanShoot()
         {
@@ -55,9 +57,8 @@ namespace Scripts
         {
             base.Shoot();
 
-            Invoke("ResetShoot", _settings.shootCooldown);
+            // _readyForShoot = false;
+            
         }
-
-        private void ResetShoot() => _readyForShoot = true;
     }
 }

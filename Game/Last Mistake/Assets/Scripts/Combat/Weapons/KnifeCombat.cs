@@ -29,19 +29,22 @@ namespace Scripts.Combat
 
             if (_playerInput != null) {
                 _slashAction = _playerInput.actions["KnifeSlash"];
-                _slashAction.performed += Slash;
-                _slashAction.canceled += Slash;
             }
         }
 
         private void OnEnable() {
-            if (_slashAction != null)
-                _slashAction.Enable();
+            if (_slashAction == null) return;
+
+            _slashAction.Enable();
+            _slashAction.performed += Slash;
+            // _slashAction.canceled += Slash;
         }
 
         private void OnDisable() {
-            if (_slashAction != null)
-                _slashAction.Disable();
+            if (_slashAction == null) return;
+
+            _slashAction.performed -= Slash;
+            _slashAction.Disable();
         }
 
         private void Slash(InputAction.CallbackContext context) {

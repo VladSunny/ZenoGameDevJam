@@ -31,18 +31,26 @@ namespace Scripts.Movement
 
             _moveAction = _playerInput.actions["Movement"];
 
-            _moveAction.performed += OnMove;
-            _moveAction.canceled += OnMove;
+            // _moveAction.performed += OnMove;
+            // _moveAction.canceled += OnMove;
 
             _lastMoveDirection = transform.forward;
             ChangeState(MovementState.walking);
         }
 
         private void OnEnable() {
+            if (_moveAction == null) return;
+
             _moveAction.Enable();
+            _moveAction.performed += OnMove;
+            _moveAction.canceled += OnMove;
         }
 
         private void OnDisable() {
+            if (_moveAction == null) return;
+
+            _moveAction.performed -= OnMove;
+            _moveAction.canceled -= OnMove;
             _moveAction.Disable();
         }
 
