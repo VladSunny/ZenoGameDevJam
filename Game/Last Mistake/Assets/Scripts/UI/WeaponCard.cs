@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Scripts.Combat;
+using Scripts.Types;
 
 namespace Scripts.UI
 {   
@@ -19,8 +20,8 @@ namespace Scripts.UI
         private TextMeshProUGUI _cardHeader;
         private TabButton _cardTabButton;
         private GunBase _weapon;
-        [SerializeField] private Transform _cardParent;
-        [SerializeField] private Transform _upgradeParent;
+        private Transform _cardParent;
+        private Transform _upgradeParent;
 
         private GameObject _cardParentObject;
         private GameObject _upgradeParentObject;
@@ -28,15 +29,11 @@ namespace Scripts.UI
         private void Awake() {
             _weapon = GetComponent<GunBase>();
             _wallet = GameObject.FindGameObjectWithTag("Player").GetComponent<Wallet>();
-            
-            if (_cardParent == null || _upgradeParent == null) {
-                _cardParentObject = GameObject.FindGameObjectWithTag("CardParent");
-                _upgradeParentObject = GameObject.FindGameObjectWithTag("UpgradeParent");
-                
-                _cardParent = _cardParentObject.transform;
-                _upgradeParent = _upgradeParentObject.transform;
-            }
-        
+            _cardParentObject = FindObjectByComponent<CardParent>();
+            _upgradeParentObject = FindObjectByComponent<UpgradesParent>();
+
+            _cardParent = _cardParentObject.transform;
+            _upgradeParent = _upgradeParentObject.transform;
 
             _card = Instantiate(_cardPrefab, _cardParent);
             _cardHeader = _card.GetComponentInChildren<TextMeshProUGUI>();
@@ -48,6 +45,14 @@ namespace Scripts.UI
             _cardHeader.text = _name;
 
             CreateUpgrades();
+        }
+
+        private GameObject FindObjectByComponent<T>() where T : Component {
+            T component = Resources.FindObjectsOfTypeAll<T>()[0];
+            if (component != null) {
+                return component.gameObject;
+            }
+            return null;
         }
 
         private void CreateUpgrades() {

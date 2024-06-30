@@ -3670,6 +3670,7 @@ GameObject:
   - component: {fileID: 935416442}
   - component: {fileID: 935416441}
   - component: {fileID: 935416440}
+  - component: {fileID: 935416443}
   m_Layer: 5
   m_Name: Upgrades
   m_TagString: UpgradeParent
@@ -3759,6 +3760,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935416438}
   m_CullTransparentMesh: 1
+--- !u!114 &935416443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935416438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2832c2949dc2bbfcd88eba37c2f14d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &947496062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6368,6 +6381,7 @@ GameObject:
   - component: {fileID: 1877687934}
   - component: {fileID: 1877687933}
   - component: {fileID: 1877687935}
+  - component: {fileID: 1877687936}
   m_Layer: 5
   m_Name: Content
   m_TagString: CardParent
@@ -6487,6 +6501,18 @@ MonoBehaviour:
   tabIdle: {r: 0.003921569, g: 0.19215687, b: 0.9137255, a: 1}
   tabHover: {r: 0.91764706, g: 0, b: 1, a: 1}
   tabActive: {r: 0.8784314, g: 0.0627451, b: 0.0627451, a: 1}
+--- !u!114 &1877687936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877687929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6394b0c78d1971e08f4955d07a94e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1893946526
 GameObject:
   m_ObjectHideFlags: 0
@@ -7182,7 +7208,7 @@ PrefabInstance:
     - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
         type: 3}
       propertyPath: _name
-      value: Pistol$
+      value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 4040050381321565872, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
         type: 3}

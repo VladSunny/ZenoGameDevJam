@@ -11,35 +11,35 @@ namespace Scripts
         public UnityEvent OnTabSelected;
         public UnityEvent OnTabDeselected;
         
-        private TabGroup tabGroup;
-        private Image background;
+        private TabGroup _tabGroup;
+        private Image _background;
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            tabGroup.OnTabSelected(this);
+            _tabGroup.OnTabSelected(this);
             OnTabSelected?.Invoke();
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            tabGroup.OnTabEnter(this);
+            _tabGroup.OnTabEnter(this);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            tabGroup.OnTabExit(this);
+            _tabGroup.OnTabExit(this);
         }
 
         public void ChangeColor(Color color) {
-            background.DOColor(color, 0.5f);
+            _background.DOColor(color, 0.5f);
             // background.color = color
         }
 
         private void Awake() {
-            background = GetComponent<Image>();
-            tabGroup = GetComponentInParent<TabGroup>();
+            _background = GetComponent<Image>();
+            _tabGroup = GetComponentInParent<TabGroup>();
 
-            tabGroup.Subscribe(this);
+            _tabGroup.Subscribe(this);
         }
     }
 }
