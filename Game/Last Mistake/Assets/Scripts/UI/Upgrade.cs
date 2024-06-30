@@ -34,9 +34,7 @@ namespace Scripts.UI
 
         public void Initialize(GameObject prefab, Transform parent, UnityAction callback)
         {
-            CreateUpgrades createUpgrades = new CreateUpgrades();
-
-            UpgradeGameObject = createUpgrades.CreateUpgrade(prefab, parent);
+            UpgradeGameObject = CreateUpgrade(prefab, parent);
 
             UpgradeButton = UpgradeGameObject.GetComponentInChildren<Button>();
             UpgradeText = UpgradeGameObject.GetComponentInChildren<TextMeshProUGUI>();
@@ -76,10 +74,10 @@ namespace Scripts.UI
         public bool CanUpgrade() => !(_hasMaxLevel && Level >= _maxLevel);
 
         public int Price() => _cost;
-    }
 
-    public class CreateUpgrades : MonoBehaviour
-    {
-        public GameObject CreateUpgrade(GameObject prefab, Transform parent) => Instantiate(prefab, parent);
+        private GameObject CreateUpgrade(GameObject prefab, Transform parent)
+        {
+            return Object.Instantiate(prefab, parent);
+        }
     }
 }

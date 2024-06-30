@@ -1,6 +1,4 @@
-using System.Collections;
 using Scripts.Combat;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Scripts
@@ -10,8 +8,7 @@ namespace Scripts
         private PlayerInput _playerInput;
         private InputAction _shootAction;
         private InputAction _reloadAction;
-        private Coroutine _fireCoroutine;
-        private bool _readyForShoot = true;
+        private bool _fire = false;
 
         protected override void Awake() {
             base.Awake();
@@ -21,53 +18,35 @@ namespace Scripts
             if (_playerInput != null) {
                 _shootAction = _playerInput.actions["Shoot"];
                 _reloadAction = _playerInput.actions["Reload"];
-
-                _shootAction.started += OnActionStarted;
-                _shootAction.canceled += OnActionCanceled;
-                
-                _reloadAction.performed += (InputAction.CallbackContext context) => StartReload();
             }
         }
 
-        // private void OnEnable() {
-        //     if (_shootAction != null) {
-        //         _shootAction.started += OnActionStarted;
-        //         _shootAction.canceled += OnActionCanceled;
-        //     }
-        // }
+        private void OnEnable() {
+            if (_shootAction != null && _reloadAction != null) {
+                _shootAction.started += OnActionStarted;
+                _shootAction.canceled += OnActionCanceled;
+                _reloadAction.performed += ctx => StartReload();
+            }
+        }
 
-        // private void OnDisable() {
-        //     if (_shootAction != null) {
-        //         _shootAction.started -= OnActionStarted;
-        //         _shootAction.canceled -= OnActionCanceled;
-        //     }
-        // }
+        private void OnDisable() {
+            if (_shootAction != null && _reloadAction != null) {
+                _shootAction.started -= OnActionStarted;
+                _shootAction.canceled -= OnActionCanceled;
+                _reloadAction.performed -= ctx => StartReload();
+            }
+        }
 
-        protected override bool CanShoot()
-        {
-            if (!base.CanShoot()) return false;
-
-            return _readyForShoot;
+        private void Update() {
+            if (_fire) Shoot();
         }
 
         private void OnActionStarted(InputAction.CallbackContext context) {
-            if (_fireCoroutine == null) _fireCoroutine = StartCoroutine(Fire());
+            _fire = true;
         }
 
         private void OnActionCanceled(InputAction.CallbackContext context) {
-            if (_fireCoroutine != null) {
-                StopCoroutine(_fireCoroutine);
-                _fireCoroutine = null;
-            }
-        }
-
-        private IEnumerator Fire() {
-            while (true) {
-                if (CanShoot()) {
-                    Shoot();
-                }
-                yield return new WaitForSeconds(_settings.shootCooldown);
-            }
+            _fire = false;
         }
     }
 }

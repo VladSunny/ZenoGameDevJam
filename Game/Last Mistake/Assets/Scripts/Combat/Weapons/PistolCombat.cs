@@ -17,8 +17,6 @@ namespace Scripts
         private InputAction _shootAction;
         private InputAction _reloadAction;
 
-        private bool _readyForShoot = true;
-
         protected override void Awake() {
             base.Awake();
 
@@ -44,21 +42,6 @@ namespace Scripts
 
             if (_reloadAction != null)
                 _reloadAction.performed -= ctx => StartReload();
-        }
-
-        protected override bool CanShoot()
-        {
-            if (!base.CanShoot()) return false;
-
-            return _readyForShoot;
-        }
-
-        protected override void Shoot()
-        {
-            base.Shoot();
-
-            // _readyForShoot = false;
-            
         }
     }
 }

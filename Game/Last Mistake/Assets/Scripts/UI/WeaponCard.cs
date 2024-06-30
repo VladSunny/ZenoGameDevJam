@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Scripts.Combat;
 
 namespace Scripts.UI
 {   
@@ -18,13 +19,13 @@ namespace Scripts.UI
         private GameObject _card;
         private TextMeshProUGUI _cardHeader;
         private TabButton _cardTabButton;
-        private PistolCombat _pistolCombat;
+        private GunBase _weapon;
 
         private void Awake() {
             _card = Instantiate(_cardPrefab, _cardParent);
             _cardHeader = _card.GetComponentInChildren<TextMeshProUGUI>();
             _cardTabButton = _card.GetComponent<TabButton>();
-            _pistolCombat = GetComponent<PistolCombat>();
+            _weapon = GetComponent<GunBase>();
             _wallet = GameObject.FindGameObjectWithTag("Player").GetComponent<Wallet>();
 
             _cardTabButton.OnTabSelected.AddListener(ShowUpgrades);
@@ -54,22 +55,22 @@ namespace Scripts.UI
             Debug.Log(upgradeType);
 
             if (upgradeType == UpgradeType.FullReload) {
-                _pistolCombat.ResetWeapon();
+                _weapon.ResetWeapon();
             }
             if (upgradeType == UpgradeType.MaxBullets) {
-                _pistolCombat._settings.maxBullets += 5;
+                _weapon._settings.maxBullets += 5;
             }
             if (upgradeType == UpgradeType.FireRate) {
-                _pistolCombat._settings.shootCooldown /= 1.3f;
+                _weapon._settings.shootCooldown /= 1.3f;
             }
             if (upgradeType == UpgradeType.Spread) {
-                _pistolCombat._settings.spread /= 1.3f;
+                _weapon._settings.spread /= 1.3f;
             }
             if (upgradeType == UpgradeType.Damage) {
-                _pistolCombat._settings.damage += 5;
+                _weapon._settings.damage += 5;
             }
             if (upgradeType == UpgradeType.MaxBulletsInClip) {
-                _pistolCombat._settings.bulletsInClip += 5;
+                _weapon._settings.bulletsInClip += 5;
             }
         }
 

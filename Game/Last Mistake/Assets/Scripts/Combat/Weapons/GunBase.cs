@@ -33,6 +33,7 @@ namespace Scripts.Combat
         private bool _reloading = false;
         private int _curBullets = 0;
         private int _rememainingBullets = 0;
+        private float _nextTimeToFire = 0f;
 
         protected virtual void Awake() {
             _animator = GetComponent<Animator>();
@@ -41,6 +42,12 @@ namespace Scripts.Combat
             _settings = Instantiate(_config);
             ResetWeapon();
         }
+
+        private void OnDisable() {
+            _reloading = false;
+        }
+
+        public bool IsReloading() => _reloading;
 
         protected virtual bool CanShoot() {
             if (_curBullets <= 0) {
@@ -52,13 +59,16 @@ namespace Scripts.Combat
                 _curBullets <= 0 ||
                 _waveController.GetGameState() != WaveController.GameState.Wave ||
                 _waveController.isPaused ||
-                _waveController.IsGameOver()
+                _waveController.IsGameOver() ||
+                Time.time < _nextTimeToFire ||
+                gameObject.activeSelf == false
             );
         }
 
         protected virtual void Shoot() {
             if (!CanShoot()) return;
 
+            _nextTimeToFire = Time.time + _settings.shootCooldown;
             _curBullets--;
 
             Vector3 direction = GetDirection();
@@ -128,8 +138,16 @@ namespace Scripts.Combat
             Destroy(trail.gameObject, trail.time);
         }
 
+        private bool CanReload() {
+            return !(
+                _rememainingBullets <= 0 ||
+                _curBullets == _settings.bulletsInClip ||
+                _reloading ||
+                gameObject.activeSelf == false);
+        }
+
         protected void StartReload() {
-            if (_rememainingBullets <= 0 || _curBullets == _settings.bulletsInClip || _reloading) return;
+            if (!CanReload()) return;
 
             _reloading = true;
             _animator.SetTrigger("reload");

@@ -141,3 +141,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openShopButton: {fileID: 0}
+  _shopUI: {fileID: 0}
+  _shopAnimationInDuration: 1.5
