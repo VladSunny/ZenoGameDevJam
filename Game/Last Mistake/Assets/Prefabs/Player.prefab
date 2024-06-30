@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6028362599523407957}
   m_Layer: 0
   m_Name: SwitchingWeapons
-  m_TagString: Untagged
+  m_TagString: WeaponParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5006075619030503667}
-  - {fileID: 7959989021225394680}
   m_Father: {fileID: 7485960479123184097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6028362599523407957
@@ -46,6 +45,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628652ab21df48adba3985b59cdfd646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3817151324066454352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6136322356126325756}
+  m_Layer: 0
+  m_Name: RiflePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6136322356126325756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3817151324066454352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8948327457622629549}
+  m_Father: {fileID: 7485960479123184097}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4302367119032769651
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,15 +469,16 @@ Transform:
   m_Children:
   - {fileID: 3274298247753679813}
   - {fileID: 7333641420323319771}
+  - {fileID: 6136322356126325756}
   m_Father: {fileID: 823348931823972400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4535909875305365551
+--- !u!1001 &3218840360924872058
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7333641420323319771}
+    m_TransformParent: {fileID: 6136322356126325756}
     m_Modifications:
     - target: {fileID: 5802120835114557911, guid: 02315c8298b36f293811b2cc48e8d9dd,
         type: 3}
@@ -461,7 +493,7 @@ PrefabInstance:
     - target: {fileID: 5802120835114557911, guid: 02315c8298b36f293811b2cc48e8d9dd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5802120835114557911, guid: 02315c8298b36f293811b2cc48e8d9dd,
         type: 3}
@@ -513,11 +545,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02315c8298b36f293811b2cc48e8d9dd, type: 3}
---- !u!4 &7959989021225394680 stripped
+--- !u!4 &8948327457622629549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5802120835114557911, guid: 02315c8298b36f293811b2cc48e8d9dd,
     type: 3}
-  m_PrefabInstance: {fileID: 4535909875305365551}
+  m_PrefabInstance: {fileID: 3218840360924872058}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4621216977464846882
 PrefabInstance:
@@ -723,12 +755,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9152f617fe9e5b509970a9398086e0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: Pistol
   _cardPrefab: {fileID: 7143754993844406432, guid: f945441f0b443bd119b8ee32c2b33cf6,
     type: 3}
   _upgradePrefab: {fileID: 3872537193373770667, guid: f90fde7d7e22e3bf3a908687f7e65d72,
     type: 3}
-  _cardParent: {fileID: 0}
-  _upgradeParent: {fileID: 0}
   _upgrades:
   - _name: Full reload
     _type: 4

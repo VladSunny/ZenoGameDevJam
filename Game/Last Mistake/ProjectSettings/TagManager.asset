@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - WaveController
+  - WeaponInfo
+  - UpgradeParent
+  - CardParent
+  - WeaponParent
   layers:
   - Default
   - TransparentFX

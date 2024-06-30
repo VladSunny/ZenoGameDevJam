@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 5802120835114557911}
   - component: {fileID: 4810489196136244710}
   - component: {fileID: 6014179676037771157}
+  - component: {fileID: 1810748724163627445}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Untagged
@@ -104,13 +105,66 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _config: {fileID: 11400000, guid: 35c9bd8ea2c725205a5a2e9d36023bf8, type: 2}
-  _bulletsText: {fileID: 0}
   _bulletTrail: {fileID: 231260429771431817, guid: 5a306e078984aa279aad4d8204fbc927,
     type: 3}
   _bulletParticle: {fileID: 4613503952293457754, guid: f8e0c5df6045fd8f88a6b86965bc4c9f,
     type: 3}
   _particleOffset: 0.3
   _settings: {fileID: 0}
+--- !u!114 &1810748724163627445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824667222970655339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9152f617fe9e5b509970a9398086e0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Rifle
+  _cardPrefab: {fileID: 7143754993844406432, guid: f945441f0b443bd119b8ee32c2b33cf6,
+    type: 3}
+  _upgradePrefab: {fileID: 3872537193373770667, guid: f90fde7d7e22e3bf3a908687f7e65d72,
+    type: 3}
+  _upgrades:
+  - _name: Full reload
+    _type: 4
+    _cost: 10
+    _costIncrement: 15
+    _hasMaxLevel: 0
+    _maxLevel: 5
+  - _name: Max bullets
+    _type: 0
+    _cost: 10
+    _costIncrement: 15
+    _hasMaxLevel: 1
+    _maxLevel: 5
+  - _name: Fire Rate
+    _type: 1
+    _cost: 10
+    _costIncrement: 15
+    _hasMaxLevel: 1
+    _maxLevel: 5
+  - _name: Spread
+    _type: 2
+    _cost: 10
+    _costIncrement: 15
+    _hasMaxLevel: 1
+    _maxLevel: 5
+  - _name: Damage
+    _type: 3
+    _cost: 10
+    _costIncrement: 15
+    _hasMaxLevel: 1
+    _maxLevel: 5
+  - _name: Max bullets in Clip
+    _type: 5
+    _cost: 10
+    _costIncrement: 15
+    _hasMaxLevel: 1
+    _maxLevel: 5
 --- !u!1001 &3621789048764352391
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,10 +9,9 @@ namespace Scripts.UI
     public class WeaponCard : MonoBehaviour
     {
         [Header("Dependencies")]
+        [SerializeField] private string _name;
         [SerializeField] private GameObject _cardPrefab;
         [SerializeField] private GameObject _upgradePrefab;
-        [SerializeField] private Transform _cardParent;
-        [SerializeField] private Transform _upgradeParent;
         [SerializeField] private Upgrade[] _upgrades;
 
         private Wallet _wallet;
@@ -20,8 +19,13 @@ namespace Scripts.UI
         private TextMeshProUGUI _cardHeader;
         private TabButton _cardTabButton;
         private GunBase _weapon;
+        private Transform _cardParent;
+        private Transform _upgradeParent;
 
         private void Awake() {
+            _cardParent = GameObject.FindGameObjectWithTag("CardParent").transform;
+            _upgradeParent = GameObject.FindGameObjectWithTag("UpgradeParent").transform;
+
             _card = Instantiate(_cardPrefab, _cardParent);
             _cardHeader = _card.GetComponentInChildren<TextMeshProUGUI>();
             _cardTabButton = _card.GetComponent<TabButton>();
@@ -31,7 +35,7 @@ namespace Scripts.UI
             _cardTabButton.OnTabSelected.AddListener(ShowUpgrades);
             _cardTabButton.OnTabDeselected.AddListener(HideUpgrades);
 
-            _cardHeader.text = gameObject.name;
+            _cardHeader.text = _name;
 
             CreateUpgrades();
         }

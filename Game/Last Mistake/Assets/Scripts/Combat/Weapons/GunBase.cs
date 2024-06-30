@@ -17,8 +17,7 @@ namespace Scripts.Combat
 
         [SerializeField] private PistolConfig _config;
 
-        [Header("UI")]
-        [SerializeField] private TextMeshProUGUI _bulletsText;
+        // [Header("UI")]
 
         [Header("Effects")]
         [SerializeField] private TrailRenderer _bulletTrail;
@@ -29,6 +28,7 @@ namespace Scripts.Combat
 
         private Animator _animator;
         private WaveController _waveController;
+        private TextMeshProUGUI _bulletsText;
 
         private bool _reloading = false;
         private int _curBullets = 0;
@@ -38,6 +38,7 @@ namespace Scripts.Combat
         protected virtual void Awake() {
             _animator = GetComponent<Animator>();
             _waveController = GameObject.FindGameObjectWithTag("WaveController").GetComponent<WaveController>();
+            _bulletsText = GameObject.FindGameObjectWithTag("WeaponInfo").GetComponent<TextMeshProUGUI>();
 
             _settings = Instantiate(_config);
             ResetWeapon();
