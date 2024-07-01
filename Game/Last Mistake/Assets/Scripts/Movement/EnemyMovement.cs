@@ -24,13 +24,16 @@ namespace Scripts.Movement
         private float _concussionTime = 0f;
         private bool _isDead = false;
 
-        private void Awake() {
-            if (_initializeFromEditor) {
+        private void Awake()
+        {
+            if (_initializeFromEditor)
+            {
                 Initialize(_playerTransform);
             }
         }
 
-        public void Initialize(Transform playerTransform) {
+        public void Initialize(Transform playerTransform)
+        {
             _agent = GetComponentInChildren<NavMeshAgent>();
             _rb = GetComponent<Rigidbody>();
             _health = GetComponent<Health>();
@@ -43,44 +46,58 @@ namespace Scripts.Movement
             CalculatePath();
         }
 
-        void CalculatePath() {
+        void CalculatePath()
+        {
             if (_playerTransform == null || _agent == null || _path == null) return;
 
-            if (_agent.CalculatePath(_playerTransform.position, _path)) {
+            if (_agent.CalculatePath(_playerTransform.position, _path))
+            {
                 _currentPathIndex = 0;
             }
-            else {
+            else
+            {
                 Debug.LogError("Failed to calculate path");
             }
         }
 
-        private void Update() {
-            if (_playerTransform == null || _agent == null || _path == null) return;
+        private void Update()
+        {
+            if (_playerTransform == null || _agent == null || _path == null || _isDead == true) return;
 
             if (_isDead) return;
 
-            if (Time.time > _pathUpdateTime) {
+            if (Time.time > _pathUpdateTime)
+            {
                 CalculatePath();
                 _pathUpdateTime = Time.time + _pathUpdateInterval;
             }
 
-            if (_concussionTime > 0) {
+            if (_concussionTime > 0)
+            {
                 _concussionTime -= Time.deltaTime;
                 return;
             }
+        }
 
-            if (_path.status == NavMeshPathStatus.PathComplete && _currentPathIndex < _path.corners.Length) {
+        private void FixedUpdate()
+        {
+            if (_playerTransform == null || _agent == null || _path == null || _isDead == true) return;
+
+            if (_path.status == NavMeshPathStatus.PathComplete && _currentPathIndex < _path.corners.Length)
+            {
                 Vector3 targetPosition = _path.corners[_currentPathIndex];
                 Vector3 direction = (targetPosition - transform.position).normalized;
                 Vector3 directionForRotate = new Vector3(direction.x, 0, direction.z);
 
                 _rb.AddForce(direction * _speed, ForceMode.Force);
 
-                if (directionForRotate != Vector3.zero) {
+                if (directionForRotate != Vector3.zero)
+                {
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(directionForRotate), _rotationSpeed * Time.deltaTime);
                 }
 
-                if (Vector3.Distance(transform.position, targetPosition) < 0.1f + _agent.height / 2) {
+                if (Vector3.Distance(transform.position, targetPosition) < 0.1f + _agent.height / 2)
+                {
                     _currentPathIndex++;
                 }
             }
@@ -99,13 +116,15 @@ namespace Scripts.Movement
             }
         }
 
-        public void Concussion(float time) {
+        public void Concussion(float time)
+        {
             _concussionTime += time;
 
             if (_concussionTime > _maxConcussionTime) _concussionTime = _maxConcussionTime;
         }
 
-        private void OnDead() {
+        private void OnDead()
+        {
             _rb.freezeRotation = false;
             _agent.enabled = false;
 
