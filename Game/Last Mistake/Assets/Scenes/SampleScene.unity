@@ -7071,6 +7071,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893946526}
   m_CullTransparentMesh: 1
+--- !u!1 &1904736837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1904736839}
+  - component: {fileID: 1904736838}
+  - component: {fileID: 1904736840}
+  m_Layer: 0
+  m_Name: BackgroundAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1904736838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904736837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fe65eea6869ed4f89e01ea6702f3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeInTime: 1.5
+  _sounds:
+  - name: WaveMusic
+    clip: {fileID: 8300000, guid: 7415148e6403cae43b51ae7f5ff23537, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    playOnAwake: 1
+    source: {fileID: 0}
+  - name: RestMusic
+    clip: {fileID: 8300000, guid: 0e420036dd41f5e4fa673e8b8ea01f07, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: AfterDeathMusic
+    clip: {fileID: 8300000, guid: d668e4a36ca1ea145bda11f91fe900aa, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+--- !u!4 &1904736839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904736837}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1904736840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904736837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7baa027cb10c1f94c8742fa914794a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1944777929
 GameObject:
   m_ObjectHideFlags: 0
@@ -7991,7 +8071,7 @@ PrefabInstance:
     - target: {fileID: 4165935632030836659, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
         type: 3}
       propertyPath: coins
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4165935632030836659, guid: 741064efaa6a9f64ba8f23b99feaf0d5,
         type: 3}
@@ -8717,6 +8797,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1904736839}
   - {fileID: 2027187733}
   - {fileID: 1136310325}
   - {fileID: 410087041}
