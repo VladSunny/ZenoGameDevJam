@@ -20,26 +20,31 @@ namespace Scripts.UI
 
         private bool _loading = false;
 
-        private void Awake() {
+        private void Awake()
+        {
             _pauseAction = GetComponent<PlayerInput>().actions["PauseMenu"];
             _pauseMenuImage = _pauseMenuUI.GetComponent<Image>();
             _waveController = GameObject.FindGameObjectWithTag("WaveController").GetComponent<WaveController>();
 
             _normalMenuColor = _pauseMenuUI.GetComponent<Image>().color;
 
-            _pauseMenuUI.SetActive(false);
+            // _pauseMenuUI.SetActive(false);
 
             _pauseAction.performed += PressHandler;
 
             _resumeButton.onClick.AddListener(Resume);
             _quitButton.onClick.AddListener(() => Application.Quit());
+
+            Pause();
         }
 
-        private void OnEnable() {
+        private void OnEnable()
+        {
             _pauseAction.Enable();
         }
 
-        private void OnDisable() {
+        private void OnDisable()
+        {
             _pauseAction.Disable();
         }
 
@@ -53,21 +58,24 @@ namespace Scripts.UI
                 Pause();
         }
 
-        private void Resume() {
+        private void Resume()
+        {
             GameIsPaused = false;
             _waveController.isPaused = false;
             _loading = true;
 
-            _pauseMenuImage.DOFade(0f, 0.5f).SetUpdate(true).OnComplete(() => {
+            _pauseMenuImage.DOFade(0f, 0.5f).SetUpdate(true).OnComplete(() =>
+            {
                 _pauseMenuUI.SetActive(false);
                 Time.timeScale = 1f;
                 _loading = false;
             });
         }
 
-        private void Pause() {
+        private void Pause()
+        {
             if (_waveController.IsGameOver()) return;
-            
+
             GameIsPaused = true;
             _waveController.isPaused = true;
 
@@ -78,7 +86,7 @@ namespace Scripts.UI
             _loading = true;
 
             _pauseMenuImage.DOFade(_normalMenuColor.a, 0.5f).SetUpdate(true).OnComplete(() => _loading = false);
-            
+
             Time.timeScale = 0f;
 
             Debug.Log("Pause");
