@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6137157143228342240}
   - component: {fileID: 3502196966452164679}
   - component: {fileID: 2671982497055443542}
+  - component: {fileID: 7122764358161632439}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -210,3 +211,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380702792d142fd31a21a0abbc572418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7122764358161632439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6663178584991191377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fe65eea6869ed4f89e01ea6702f3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeInTime: 0
+  _sounds:
+  - name: Hit
+    clip: {fileID: 8300000, guid: 23729b7d76e77484b8df7a6ee3934ae0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}

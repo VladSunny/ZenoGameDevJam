@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1593771403507752388}
   - component: {fileID: 389145237481431426}
   - component: {fileID: 2091502672876007331}
+  - component: {fileID: 2379753911320110654}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -135,7 +136,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   _config: {fileID: 0}
-  _bulletsText: {fileID: 0}
   _bulletTrail: {fileID: 0}
   _bulletParticle: {fileID: 0}
   _particleOffset: 0.3
@@ -161,6 +161,55 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2379753911320110654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309691485364693326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fe65eea6869ed4f89e01ea6702f3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeInTime: 0
+  _sounds:
+  - name: Reload1
+    clip: {fileID: 8300000, guid: 30a3baa22f6c2d441bc38a27f86164db, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Reload2
+    clip: {fileID: 8300000, guid: 6ebf4bec8e7c18d41af8c4ca26a68766, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Reload3
+    clip: {fileID: 8300000, guid: 1fa0fda273cfbbf479d8971917e1541e, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Reload4
+    clip: {fileID: 8300000, guid: a72126425936d134bb93b8847bc5d7f8, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Shot
+    clip: {fileID: 8300000, guid: 3f7609eaa55c56c4eb6c9e6a2efaba66, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1 &3141693021849733046
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +235,7 @@ Transform:
   m_GameObject: {fileID: 3141693021849733046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.28, z: 1.025}
+  m_LocalPosition: {x: 0, y: 0.31, z: 0.597}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

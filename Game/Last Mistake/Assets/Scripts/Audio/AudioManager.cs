@@ -19,6 +19,7 @@ namespace Scripts.Audio
                 s.source.volume = s.volume;
                 s.source.pitch = s.pitch;
                 s.source.loop = s.loop;
+                s.source.playOnAwake = s.playOnAwake;
 
                 if (s.playOnAwake)
                     s.source.Play();

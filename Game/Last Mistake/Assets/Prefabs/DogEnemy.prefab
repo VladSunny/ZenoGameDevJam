@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4240440988749573908}
   - component: {fileID: 7987113075184006834}
   - component: {fileID: 5298430790877564048}
+  - component: {fileID: 2604962563171798691}
   m_Layer: 0
   m_Name: DogEnemy
   m_TagString: Untagged
@@ -208,3 +209,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 4.068464, z: 1}
   m_Center: {x: 0, y: 1.0342324, z: 0}
+--- !u!114 &2604962563171798691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925419722094134091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fe65eea6869ed4f89e01ea6702f3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeInTime: 0
+  _sounds:
+  - name: Hit
+    clip: {fileID: 8300000, guid: 23729b7d76e77484b8df7a6ee3934ae0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}

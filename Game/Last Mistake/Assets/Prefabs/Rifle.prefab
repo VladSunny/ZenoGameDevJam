@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4810489196136244710}
   - component: {fileID: 6014179676037771157}
   - component: {fileID: 1810748724163627445}
+  - component: {fileID: 118939804073711123}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Untagged
@@ -165,6 +166,34 @@ MonoBehaviour:
     _costIncrement: 15
     _hasMaxLevel: 1
     _maxLevel: 5
+--- !u!114 &118939804073711123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824667222970655339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8fe65eea6869ed4f89e01ea6702f3cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeInTime: 0
+  _sounds:
+  - name: Reload
+    clip: {fileID: 8300000, guid: 8117ce9a9af8a51408a84b94ab1e8117, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Shot
+    clip: {fileID: 8300000, guid: d1017c30975f3324daf71b54ceaeb475, type: 3}
+    volume: 0.7
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1001 &3621789048764352391
 PrefabInstance:
   m_ObjectHideFlags: 0

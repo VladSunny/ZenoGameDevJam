@@ -3,6 +3,8 @@ using UnityEngine.Events;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 
+using Scripts.Audio;
+
 namespace Scripts.Combat
 {
     public class Health : MonoBehaviour
@@ -16,29 +18,35 @@ namespace Scripts.Combat
         [SerializeField] private float _colorChangeDuration = 0.5f;
 
         public UnityEvent OnDead;
-        
+
+        private AudioManager _audioManager;
         private float _currentHealth;
         private bool _isDead = false;
 
         private void Awake()
         {
+            _audioManager = GetComponent<AudioManager>();
             _currentHealth = _maxHealth;
             OnDead.AddListener(Dead);
         }
 
         public void TakeDamage(float damage)
         {
+            _audioManager.Play("Hit");
+
             if (_isDead) return;
 
             _currentHealth -= damage;
 
-            if (_currentHealth <= 0) {
+            if (_currentHealth <= 0)
+            {
                 OnDead.Invoke();
                 _isDead = true;
             }
         }
 
-        private async void Dead() {
+        private async void Dead()
+        {
             GetComponent<Renderer>().material.DOColor(_corpseColor, _colorChangeDuration);
 
             await UniTask.Delay(2000);
